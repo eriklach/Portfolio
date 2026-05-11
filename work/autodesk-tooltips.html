@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Autodesk Tooltips — Erik Lachapelle</title>
+<title>Tooltips For Maya — Erik Lachapelle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -49,9 +49,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 28px;display:fl
 @keyframes blink{0%,100%{opacity:1}55%{opacity:.2}}
 
 .cs-intro{padding:120px 28px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;border-bottom:1px solid var(--border);}
-.cs-title{font-size:clamp(64px,9vw,112px);font-weight:700;letter-spacing:-.02em;text-transform:uppercase;color:var(--text);line-height:.92;margin-bottom:24px;}
-.cs-subtitle{font-size:clamp(22px,3vw,32px);font-weight:300;letter-spacing:.04em;color:var(--text-mid);margin-bottom:16px;}
-.cs-description{font-size:15px;font-weight:300;letter-spacing:.06em;line-height:1.8;color:var(--text-dim);max-width:400px;margin-bottom:32px;}
+.cs-title{font-size:clamp(56px,8vw,100px);font-weight:700;letter-spacing:-.02em;text-transform:uppercase;color:var(--text);line-height:.92;margin-bottom:24px;}
+.cs-subtitle{font-size:clamp(18px,2.4vw,26px);font-weight:300;letter-spacing:.04em;color:var(--text-mid);margin-bottom:32px;line-height:1.3;}
 
 .cs-meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
 .cs-meta-card{border:1px solid var(--border-mid);background:var(--bg-card);padding:22px 20px 24px;}
@@ -68,8 +67,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 28px;display:fl
 .cs-section-num{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:10px;}
 .cs-section-title{font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-.01em;text-transform:uppercase;color:var(--text);line-height:1;margin-bottom:14px;}
 .cs-section-sub{font-size:14px;font-weight:300;font-style:italic;letter-spacing:.06em;line-height:1.7;color:var(--text-dim);max-width:240px;}
-.cs-pullquote{border-left:2px solid var(--amber-dim);padding:8px 0 8px 16px;margin-top:28px;}
-.cs-pullquote p{font-size:16px;font-weight:500;letter-spacing:.04em;line-height:1.5;color:var(--text);}
 
 .cs-col{display:flex;flex-direction:column;gap:20px;}
 .cs-col-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:6px;}
@@ -78,7 +75,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 28px;display:fl
 .cs-col-body p:last-child{margin-bottom:0;}
 .cs-col-body strong{color:var(--text);font-weight:500;}
 
-.cs-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.cs-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
 .cs-list li{font-size:15px;font-weight:300;letter-spacing:.05em;line-height:1.7;color:var(--text-mid);padding-left:16px;position:relative;}
 .cs-list li::before{content:'—';position:absolute;left:0;color:var(--amber-dim);font-weight:400;}
 .cs-list li strong{color:var(--text);font-weight:500;}
@@ -89,6 +86,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 28px;display:fl
 .cs-card-body p{margin-bottom:12px;}
 .cs-card-body p:last-child{margin-bottom:0;}
 .cs-card-body strong{color:var(--text);font-weight:500;}
+
+/* tooltip example */
+.cs-tooltip-example{border:1px solid var(--border-mid);background:var(--bg-2);padding:18px 20px;display:flex;flex-direction:column;gap:6px;}
+.cs-tooltip-before{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.18em;color:var(--text-faint);text-transform:uppercase;margin-bottom:2px;}
+.cs-tooltip-text{font-size:14px;font-weight:300;letter-spacing:.04em;line-height:1.6;color:var(--text-mid);}
+.cs-tooltip-text.after{color:var(--text-mid);}
+.cs-tooltip-divider{border:none;border-top:1px solid var(--border);margin:10px 0;}
 
 .cs-span-2{grid-column:2 / span 2;}
 
@@ -119,9 +123,8 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
   .cs-intro{padding:80px 16px 40px;gap:24px;}
   .cs-meta-grid{grid-template-columns:1fr 1fr;}
   .cs-section{grid-template-columns:1fr;padding:48px 16px;gap:24px;}
-  .cs-section-heading{grid-column:1;}
+  .cs-section-heading,.cs-span-2{grid-column:1;}
   .cs-col{gap:12px;}
-  .cs-span-2{grid-column:1;}
   .cs-banner{aspect-ratio:4/3;}
   .cs-next{padding:48px 16px;}
   .cs-next-btn{padding:16px 24px;width:100%;justify-content:center;}
@@ -147,192 +150,194 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
   </div>
 </nav>
 
+<!-- ══ INTRO ══ -->
 <section class="cs-intro">
   <div class="rev">
-    <h1 class="cs-title">Autodesk<br>Tooltips</h1>
-    <p class="cs-subtitle">Making complex software approachable.</p>
-    <p class="cs-description">Writing and designing contextual tooltips for a professional 3D modelling application used by engineers and designers worldwide.</p>
+    <h1 class="cs-title">Tooltips<br>For<br>Maya</h1>
+    <p class="cs-subtitle">Reducing friction in high-end VFX workflows through contextual guidance.</p>
   </div>
 
   <div class="cs-meta-grid rev d2">
     <div class="cs-meta-card">
       <div class="cs-meta-label">Role</div>
-      <div class="cs-meta-value">UX writer &amp; content designer</div>
+      <div class="cs-meta-value">Content Designer at Autodesk</div>
     </div>
     <div class="cs-meta-card">
       <div class="cs-meta-label">Tools</div>
-      <div class="cs-meta-value">Figma, Autodesk software, Confluence</div>
+      <div class="cs-meta-value">Figma, Google Sheets</div>
     </div>
     <div class="cs-meta-card">
       <div class="cs-meta-label">Timeline</div>
-      <div class="cs-meta-value">Ongoing — shipped in phases</div>
+      <div class="cs-meta-value">1 month</div>
     </div>
     <div class="cs-meta-card">
       <div class="cs-meta-label">Outcome</div>
-      <div class="cs-meta-value">Reduced support volume and improved onboarding completion rates.</div>
+      <div class="cs-meta-value">Tooltips to bridge the gap between legacy knowledge and new tech.</div>
     </div>
   </div>
 </section>
 
+<!-- ══ BANNER 1 ══ -->
 <div class="cs-banner rev">
-  <!-- <img src="../images/autodesk-banner-1.jpg" alt="Autodesk software UI"> -->
-  <span class="cs-banner-placeholder">Image — Autodesk UI / Tooltip Context</span>
+  <!-- <img src="../images/autodesk-banner-1.jpg" alt="A living room scene created using Maya"> -->
+  <span class="cs-banner-placeholder">Image — Living Room Scene Created Using Maya</span>
 </div>
 
+<!-- ══ SECTION 1: THE PROBLEM ══ -->
 <section class="cs-section">
   <div class="cs-section-heading rev">
     <div class="cs-section-num">01 —</div>
     <h2 class="cs-section-title">The<br>Problem</h2>
-    <p class="cs-section-sub">Professional tools are powerful. They're also intimidating.</p>
-    <div class="cs-pullquote">
-      <p>"Users shouldn't need a manual to find a button."</p>
-    </div>
+    <p class="cs-section-sub">The complexity gap.</p>
   </div>
 
   <div class="cs-col rev d1">
     <div>
       <div class="cs-col-label">The Context</div>
       <div class="cs-col-body">
-        <p>Autodesk's 3D modelling tools are industry-standard but notoriously dense. New users faced a steep learning curve, and even experienced users struggled to discover features outside their established workflows.</p>
-        <p>The result: high support ticket volume, low feature adoption, and frustrated users.</p>
+        <p>Maya is the industry standard for 3D animation, but it is notoriously complex. With the release of <strong>LookdevX</strong>, we introduced a powerful new way to handle materials using USD (Universal Scene Description).</p>
+      </div>
+    </div>
+    <div>
+      <div class="cs-col-label">The Friction</div>
+      <div class="cs-col-body">
+        <p>While powerful, LookdevX introduced new workflows and terms that alienated users familiar with the previous workflow.</p>
       </div>
     </div>
   </div>
 
   <div class="cs-col rev d2">
     <div>
-      <div class="cs-col-label">The Gap</div>
+      <div class="cs-col-label">The Hypothesis</div>
       <div class="cs-col-body">
-        <p>Existing tooltip copy was either missing entirely or written by engineers — technically accurate, but not written for humans learning a new skill under time pressure.</p>
-        <p>There was an opportunity to use clear, contextual microcopy to teach users in the moment, without pulling them out of their workflow.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="cs-span-2 rev d3">
-    <div class="cs-card">
-      <div class="cs-card-label">The Hypothesis</div>
-      <div class="cs-card-body">
-        <p>If we replace generic or missing tooltip copy with clear, contextual, action-oriented microcopy — written for the user's current task, not a feature spec — we can reduce friction and support load while increasing feature adoption.</p>
+        <p>If users couldn't understand the feature, they would abandon and revert to older, less efficient tools.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══ BANNER 2 ══ -->
 <div class="cs-banner rev">
-  <!-- <img src="../images/autodesk-banner-2.jpg" alt="Tooltip research"> -->
-  <span class="cs-banner-placeholder">Image — Research / Audit Screenshots</span>
+  <!-- <img src="../images/autodesk-banner-2.jpg" alt="LookdevX being used to create a brick material"> -->
+  <span class="cs-banner-placeholder">Image — LookdevX / Brick Material Being Created</span>
 </div>
 
+<!-- ══ SECTION 2: RESEARCH ══ -->
 <section class="cs-section">
   <div class="cs-section-heading rev">
     <div class="cs-section-num">02 —</div>
-    <h2 class="cs-section-title">Research<br>&amp; Audit</h2>
-    <p class="cs-section-sub">You can't write better copy without understanding what's broken.</p>
+    <h2 class="cs-section-title">Research</h2>
+    <p class="cs-section-sub">Tooltips aren't going to save a new user — but they can give a regular Maya user the right context at the right time.</p>
   </div>
 
   <div class="cs-col rev d1">
     <div>
-      <div class="cs-col-label">Content Audit</div>
+      <div class="cs-col-label">User Analysis</div>
+      <div class="cs-col-body">
+        <p>I bypassed my assumptions and went directly to our internal beta forum and Reddit. I needed to understand:</p>
+      </div>
       <ul class="cs-list">
-        <li><strong>Inventory:</strong> Catalogued every existing tooltip across the target feature set — noting what was present, missing, or misleading.</li>
-        <li><strong>Pattern Analysis:</strong> Identified the most common failure modes: jargon-heavy labels, vague descriptions, and tooltips that restated the button name.</li>
-        <li><strong>Support Data:</strong> Cross-referenced with support tickets to prioritise which tools caused the most confusion.</li>
+        <li>How senior artists talk about materials</li>
+        <li>How junior artists are using terminology</li>
+        <li>Whether people are widely talking about USD yet</li>
       </ul>
     </div>
   </div>
 
   <div class="cs-col rev d2">
     <div>
-      <div class="cs-col-label">User Research</div>
+      <div class="cs-col-label">The Insight</div>
       <div class="cs-col-body">
-        <p>Observed users during onboarding sessions to understand how they encountered the software for the first time and where they paused, backtracked, or gave up.</p>
-        <p>Key finding: users rarely read — they scan for confirmation that they're about to do the right thing.</p>
+        <p>Users didn't need textbook definitions.</p>
+      </div>
+      <div class="cs-tooltip-example">
+        <div class="cs-tooltip-before">Textbook (before)</div>
+        <div class="cs-tooltip-text">"This is a compound node."</div>
+        <hr class="cs-tooltip-divider">
+        <div class="cs-tooltip-before">Functional (after)</div>
+        <div class="cs-tooltip-text after">"Groups nodes together to simplify your graph."</div>
+      </div>
+      <div class="cs-col-body">
+        <p>They needed functional context — a knowledgeable colleague, not a manual.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══ BANNER 3 ══ -->
 <div class="cs-banner rev">
-  <!-- <img src="../images/autodesk-banner-3.jpg" alt="Writing and design process"> -->
-  <span class="cs-banner-placeholder">Image — Writing Process / Before & After</span>
+  <!-- <img src="../images/autodesk-banner-3.jpg" alt="The Clear Graph tooltip in the LDX Graph Editor"> -->
+  <span class="cs-banner-placeholder">Image — "Clear Graph" Tooltip in the LDX Graph Editor</span>
 </div>
 
+<!-- ══ SECTION 3: STRATEGY & IMPLEMENTATION ══ -->
 <section class="cs-section">
   <div class="cs-section-heading rev">
     <div class="cs-section-num">03 —</div>
-    <h2 class="cs-section-title">Writing<br>&amp; Design</h2>
-    <p class="cs-section-sub">Microcopy that earns its one line of space.</p>
+    <h2 class="cs-section-title">Strategy<br>&amp; Build</h2>
+    <p class="cs-section-sub">Designing for clarity.</p>
   </div>
 
   <div class="cs-col rev d1">
     <div>
-      <div class="cs-col-label">Writing Principles</div>
+      <div class="cs-col-label">Information Architecture</div>
+      <div class="cs-col-body">
+        <p>I audited every interactable element in the LookdevX interface. Working with the Product Owner, we established a clear strategy:</p>
+      </div>
       <ul class="cs-list">
-        <li><strong>Lead with the outcome:</strong> Tell users what this tool does for them, not what it is.</li>
-        <li><strong>Plain language first:</strong> Replace technical jargon with words a new user would actually know.</li>
-        <li><strong>One idea per tooltip:</strong> If a feature needs two sentences to explain, the UX might be the problem.</li>
+        <li><strong>Obvious UI:</strong> Buttons that explain themselves (e.g., "Save") get no tooltips — to reduce visual noise</li>
+        <li><strong>Complex UI:</strong> Jargon-heavy elements get "helper" tooltips</li>
       </ul>
     </div>
   </div>
 
   <div class="cs-col rev d2">
     <div>
-      <div class="cs-col-label">Collaboration</div>
+      <div class="cs-col-label">Collaboration &amp; Engineering</div>
       <div class="cs-col-body">
-        <p>Worked closely with the product and engineering teams to ensure accuracy, and with the design team to validate that copy fit within the visual constraints of each tooltip component.</p>
-        <p>Iterated on copy through rounds of review with subject matter experts, balancing technical precision with plain-language clarity.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="cs-span-2 rev d3">
-    <div class="cs-card">
-      <div class="cs-card-label">Style Guidelines Established</div>
-      <div class="cs-card-body">
-        <ul class="cs-list">
-          <li><strong>Format:</strong> Verb-led labels ("Extrude face") + one-sentence description of outcome, not mechanism.</li>
-          <li><strong>Length:</strong> Maximum 15 words for the description. If it needed more, flag for UX review.</li>
-          <li><strong>Tone:</strong> Direct and confident — like a knowledgeable colleague, not a manual.</li>
-        </ul>
+        <p>I worked directly with the engineering team to implement. Our developers were also users of the product, and had additional feedback that we incorporated.</p>
+        <p>I also ensured the tooltips aligned with the broader documentation I authored, creating a cohesive "help ecosystem" from the UI to the manual.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══ BANNER 4 ══ -->
 <div class="cs-banner rev">
-  <!-- <img src="../images/autodesk-banner-4.jpg" alt="Final tooltips in product"> -->
-  <span class="cs-banner-placeholder">Image — Final Tooltips in Product</span>
+  <!-- <img src="../images/autodesk-banner-4.jpg" alt="LookdevX in production"> -->
+  <span class="cs-banner-placeholder">Image — LookdevX in Production / Final Release</span>
 </div>
 
+<!-- ══ SECTION 4: IMPACT ══ -->
 <section class="cs-section">
   <div class="cs-section-heading rev">
     <div class="cs-section-num">04 —</div>
-    <h2 class="cs-section-title">Results<br>&amp; Impact</h2>
+    <h2 class="cs-section-title">Impact</h2>
   </div>
 
   <div class="cs-col rev d1">
     <div>
       <div class="cs-col-label">The Outcome</div>
       <div class="cs-col-body">
-        <p>After shipping the first phase of revised tooltips, the team saw a measurable reduction in support tickets related to the affected feature set, and an increase in feature adoption among new users completing onboarding.</p>
-        <p>The style guidelines established during this project became the foundation for Autodesk's broader microcopy standards.</p>
+        <p>Since its release, the overall reception of LookdevX has been overwhelmingly positive. I am proud of the small part I had to play in bringing this feature to market.</p>
+        <p>By embedding the education directly into the interface, we reduced the need for users to leave Maya to search for answers.</p>
       </div>
     </div>
   </div>
 
   <div class="cs-col rev d2">
     <div>
-      <div class="cs-col-label">Key Learnings</div>
-      <ul class="cs-list">
-        <li><strong>Words are UX:</strong> The right copy at the right moment can eliminate the need for onboarding entirely.</li>
-        <li><strong>Data-driven writing:</strong> Support ticket analysis was the most valuable input for prioritising what to write first.</li>
-        <li><strong>Standards compound:</strong> Building a style guide meant each subsequent phase shipped faster and more consistently.</li>
-      </ul>
+      <div class="cs-col-label">Reflection</div>
+      <div class="cs-col-body">
+        <p>This project highlighted the importance of <strong>Content-First Design</strong>. Even though my role has since shifted into product design, I still use a content-first approach.</p>
+        <p>In complex software, the text isn't an accessory — it is usually the primary interface.</p>
+        <p>A button is useless if the user is afraid to click it.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ══ NEXT PROJECT ══ -->
 <div class="cs-next rev">
   <a href="leaderboard-app.html" class="cs-next-btn">Next Project →</a>
 </div>
