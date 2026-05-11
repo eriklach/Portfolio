@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Sales Funnel — Erik Lachapelle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:            #eae4da;
+  --bg-2:          #e1dbd0;
+  --bg-3:          #d4cdbf;
+  --bg-card:       #ddd7cb;
+  --amber:         #8a5a12;
+  --amber-mid:     #a87020;
+  --amber-dim:     #c49038;
+  --amber-pale:    rgba(138,90,18,0.08);
+  --text:          #1e1a13;
+  --text-mid:      #3a3020;
+  --text-dim:      #7a7060;
+  --text-faint:    #a89e8c;
+  --border:        rgba(100,72,18,0.13);
+  --border-mid:    rgba(100,72,18,0.24);
+  --border-strong: rgba(100,72,18,0.50);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Barlow Condensed',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+#grain{position:fixed;inset:0;pointer-events:none;z-index:9000;opacity:.46;mix-blend-mode:multiply;}
+#vignette{position:fixed;inset:0;pointer-events:none;z-index:8999;background:radial-gradient(ellipse 90% 80% at 50% 40%,transparent 30%,rgba(155,135,100,.22) 100%);}
+#scanline{position:fixed;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(184,120,48,.18),rgba(184,120,48,.28),rgba(184,120,48,.18),transparent);pointer-events:none;z-index:8998;opacity:0;}
+
+::-webkit-scrollbar{width:2px;}
+::-webkit-scrollbar-track{background:var(--bg-2);}
+::-webkit-scrollbar-thumb{background:var(--amber-dim);}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;}
+.nav-badge{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--border-strong);padding:7px 14px 7px 10px;background:rgba(234,228,218,0.88);backdrop-filter:blur(8px);text-decoration:none;}
+.badge-icon{position:relative;width:20px;height:20px;border:1px solid var(--border-mid);flex-shrink:0;}
+.badge-icon::before{content:'';position:absolute;width:1px;height:11px;background:var(--amber);left:50%;top:50%;transform:translate(-50%,-50%);}
+.badge-icon::after{content:'';position:absolute;width:11px;height:1px;background:var(--amber);left:50%;top:50%;transform:translate(-50%,-50%);}
+.badge-text{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.2em;color:var(--text-mid);text-transform:uppercase;white-space:nowrap;}
+.nav-status{display:flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.22em;color:var(--text-faint);text-transform:uppercase;}
+.pulse{width:5px;height:5px;border-radius:50%;background:var(--amber);animation:blink 2.4s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}55%{opacity:.2}}
+
+.cs-intro{padding:120px 28px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;border-bottom:1px solid var(--border);}
+.cs-title{font-size:clamp(64px,9vw,112px);font-weight:700;letter-spacing:-.02em;text-transform:uppercase;color:var(--text);line-height:.92;margin-bottom:24px;}
+.cs-subtitle{font-size:clamp(22px,3vw,32px);font-weight:300;letter-spacing:.04em;color:var(--text-mid);margin-bottom:16px;}
+.cs-description{font-size:15px;font-weight:300;letter-spacing:.06em;line-height:1.8;color:var(--text-dim);max-width:400px;margin-bottom:32px;}
+.cs-cta{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border-strong);padding:12px 20px;background:var(--text);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .25s;}
+.cs-cta:hover{background:var(--amber);}
+
+.cs-meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.cs-meta-card{border:1px solid var(--border-mid);background:var(--bg-card);padding:22px 20px 24px;}
+.cs-meta-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:14px;}
+.cs-meta-value{font-size:15px;font-weight:300;letter-spacing:.06em;line-height:1.65;color:var(--text-mid);}
+
+.cs-banner{width:100%;aspect-ratio:16/7;background:var(--bg-3);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.cs-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 36px,rgba(100,72,18,.05) 36px,rgba(100,72,18,.05) 37px),repeating-linear-gradient(90deg,transparent,transparent 36px,rgba(100,72,18,.05) 36px,rgba(100,72,18,.05) 37px);}
+.cs-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85;mix-blend-mode:multiply;}
+.cs-banner-placeholder{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.22em;color:var(--text-faint);text-transform:uppercase;position:relative;z-index:1;border:1px solid var(--border);padding:8px 16px;background:rgba(234,228,218,.5);}
+
+.cs-section{padding:80px 28px;display:grid;grid-template-columns:280px 1fr 1fr;gap:48px 40px;border-bottom:1px solid var(--border);}
+.cs-section-heading{grid-column:1;}
+.cs-section-num{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:10px;}
+.cs-section-title{font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-.01em;text-transform:uppercase;color:var(--text);line-height:1;margin-bottom:14px;}
+.cs-section-sub{font-size:14px;font-weight:300;font-style:italic;letter-spacing:.06em;line-height:1.7;color:var(--text-dim);max-width:240px;}
+.cs-pullquote{border-left:2px solid var(--amber-dim);padding:8px 0 8px 16px;margin-top:28px;}
+.cs-pullquote p{font-size:16px;font-weight:500;letter-spacing:.04em;line-height:1.5;color:var(--text);}
+
+.cs-col{display:flex;flex-direction:column;gap:20px;}
+.cs-col-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:6px;}
+.cs-col-body{font-size:15px;font-weight:300;letter-spacing:.05em;line-height:1.8;color:var(--text-mid);}
+.cs-col-body p{margin-bottom:14px;}
+.cs-col-body p:last-child{margin-bottom:0;}
+.cs-col-body strong{color:var(--text);font-weight:500;}
+
+.cs-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.cs-list li{font-size:15px;font-weight:300;letter-spacing:.05em;line-height:1.7;color:var(--text-mid);padding-left:16px;position:relative;}
+.cs-list li::before{content:'—';position:absolute;left:0;color:var(--amber-dim);font-weight:400;}
+.cs-list li strong{color:var(--text);font-weight:500;}
+
+.cs-card{border:1px solid var(--border-mid);background:var(--bg-card);padding:24px 22px 26px;display:flex;flex-direction:column;gap:14px;}
+.cs-card-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;}
+.cs-card-body{font-size:15px;font-weight:300;letter-spacing:.05em;line-height:1.8;color:var(--text-mid);}
+.cs-card-body p{margin-bottom:12px;}
+.cs-card-body p:last-child{margin-bottom:0;}
+.cs-card-body strong{color:var(--text);font-weight:500;}
+
+.cs-span-2{grid-column:2 / span 2;}
+
+.cs-next{padding:80px 28px;display:flex;justify-content:center;border-bottom:1px solid var(--border);}
+.cs-next-btn{display:inline-flex;align-items:center;gap:14px;border:1px solid var(--border-strong);padding:20px 52px;background:var(--text);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;text-decoration:none;transition:background .25s;}
+.cs-next-btn:hover{background:var(--amber);}
+
+footer{padding:15px 28px;border-top:1px solid var(--border-mid);display:flex;justify-content:space-between;align-items:center;background:var(--bg-2);}
+footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text-faint);letter-spacing:.14em;text-transform:uppercase;}
+
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.rev{opacity:0;transform:translateY(12px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
+.rev.in{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}.d4{transition-delay:.24s}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1024px){.cs-section{grid-template-columns:220px 1fr 1fr;gap:36px 28px;}}
+@media(max-width:860px){
+  .cs-intro{grid-template-columns:1fr;padding-top:96px;gap:36px;}
+  .cs-section{grid-template-columns:1fr 1fr;padding:60px 28px;gap:32px 28px;}
+  .cs-section-heading{grid-column:1 / -1;}
+  .cs-span-2{grid-column:1 / -1;}
+  .cs-banner{aspect-ratio:16/8;}
+}
+@media(max-width:600px){
+  nav{padding:14px 16px;}
+  .nav-status{display:none;}
+  .cs-intro{padding:80px 16px 40px;gap:24px;}
+  .cs-meta-grid{grid-template-columns:1fr 1fr;}
+  .cs-section{grid-template-columns:1fr;padding:48px 16px;gap:24px;}
+  .cs-section-heading{grid-column:1;}
+  .cs-col{gap:12px;}
+  .cs-span-2{grid-column:1;}
+  .cs-banner{aspect-ratio:4/3;}
+  .cs-next{padding:48px 16px;}
+  .cs-next-btn{padding:16px 24px;width:100%;justify-content:center;}
+  footer{padding:12px 16px;flex-direction:column;gap:6px;align-items:flex-start;}
+}
+@media(max-width:400px){.cs-meta-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<canvas id="grain"></canvas>
+<div id="vignette"></div>
+<div id="scanline"></div>
+
+<nav>
+  <a href="../index.html" class="nav-badge">
+    <div class="badge-icon"></div>
+    <span class="badge-text">Erik Lachapelle — Product Designer</span>
+  </a>
+  <div class="nav-status">
+    <div class="pulse"></div>
+    Toronto, CA &nbsp;·&nbsp; Available
+  </div>
+</nav>
+
+<section class="cs-intro">
+  <div class="rev">
+    <h1 class="cs-title">Custom<br>Sales<br>Funnel</h1>
+    <p class="cs-subtitle">Turning followers into customers.</p>
+    <p class="cs-description">Building a quiz-based sales funnel for an influencer to convert their audience into paying customers.</p>
+  </div>
+
+  <div class="cs-meta-grid rev d2">
+    <div class="cs-meta-card">
+      <div class="cs-meta-label">Role</div>
+      <div class="cs-meta-value">UX designer &amp; developer</div>
+    </div>
+    <div class="cs-meta-card">
+      <div class="cs-meta-label">Tools</div>
+      <div class="cs-meta-value">Figma, Webflow, Typeform</div>
+    </div>
+    <div class="cs-meta-card">
+      <div class="cs-meta-label">Timeline</div>
+      <div class="cs-meta-value">3 months (discovery to launch)</div>
+    </div>
+    <div class="cs-meta-card">
+      <div class="cs-meta-label">Outcome</div>
+      <div class="cs-meta-value">Measurable lift in conversion rate from social audience.</div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-banner rev">
+  <!-- <img src="../images/funnel-banner-1.jpg" alt="Sales funnel hero"> -->
+  <span class="cs-banner-placeholder">Image — Hero / Funnel Overview</span>
+</div>
+
+<section class="cs-section">
+  <div class="cs-section-heading rev">
+    <div class="cs-section-num">01 —</div>
+    <h2 class="cs-section-title">The<br>Problem</h2>
+    <p class="cs-section-sub">Social followers don't automatically become customers.</p>
+    <div class="cs-pullquote">
+      <p>"Likes don't pay the bills."</p>
+    </div>
+  </div>
+
+  <div class="cs-col rev d1">
+    <div>
+      <div class="cs-col-label">The Context</div>
+      <div class="cs-col-body">
+        <p>The client had built a significant social media following but was struggling to convert that audience into revenue.</p>
+        <p>Their existing link-in-bio sent followers to a generic landing page with a high drop-off rate and no personalisation.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-col rev d2">
+    <div>
+      <div class="cs-col-label">The Opportunity</div>
+      <div class="cs-col-body">
+        <p>A quiz-based funnel would let us segment the audience by their specific needs, then route each person to the product or offer most relevant to them.</p>
+        <p>Personalisation at scale — without needing a sales team.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-span-2 rev d3">
+    <div class="cs-card">
+      <div class="cs-card-label">The Hypothesis</div>
+      <div class="cs-card-body">
+        <p>If we replace a generic landing page with a short, engaging quiz that segments users and surfaces the right offer, we can dramatically increase the conversion rate without increasing ad spend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-banner rev">
+  <!-- <img src="../images/funnel-banner-2.jpg" alt="Quiz flow"> -->
+  <span class="cs-banner-placeholder">Image — Quiz Flow / Wireframes</span>
+</div>
+
+<section class="cs-section">
+  <div class="cs-section-heading rev">
+    <div class="cs-section-num">02 —</div>
+    <h2 class="cs-section-title">Research<br>&amp; Strategy</h2>
+    <p class="cs-section-sub">Understanding the audience before designing the experience.</p>
+  </div>
+
+  <div class="cs-col rev d1">
+    <div>
+      <div class="cs-col-label">Audience Research</div>
+      <ul class="cs-list">
+        <li><strong>Segmentation:</strong> Identified 3 distinct audience personas based on comments, DMs, and poll data from the client's social channels.</li>
+        <li><strong>Pain Points:</strong> Each segment had a different primary problem the client's products could solve.</li>
+        <li><strong>Drop-off Analysis:</strong> Audited the existing landing page to identify where and why users were leaving.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cs-col rev d2">
+    <div>
+      <div class="cs-col-label">Funnel Strategy</div>
+      <div class="cs-col-body">
+        <p>Designed a 5-question quiz to identify each visitor's segment, then route them to a tailored results page with a personalised offer and CTA.</p>
+        <p>Kept the quiz short enough to maintain engagement, but long enough to gather meaningful data for segmentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-banner rev">
+  <!-- <img src="../images/funnel-banner-3.jpg" alt="Design mockups"> -->
+  <span class="cs-banner-placeholder">Image — Figma / Design Mockups</span>
+</div>
+
+<section class="cs-section">
+  <div class="cs-section-heading rev">
+    <div class="cs-section-num">03 —</div>
+    <h2 class="cs-section-title">Design<br>&amp; Build</h2>
+    <p class="cs-section-sub">Matching the client's brand while optimising for conversion.</p>
+  </div>
+
+  <div class="cs-col rev d1">
+    <div>
+      <div class="cs-col-label">Design Decisions</div>
+      <ul class="cs-list">
+        <li><strong>Brand Alignment:</strong> The quiz matched the client's existing visual identity so the transition from social felt seamless.</li>
+        <li><strong>Progress Indicator:</strong> A visible progress bar reduced abandonment by giving users a sense of completion.</li>
+        <li><strong>Mobile-First:</strong> The majority of traffic came from Instagram, so every interaction was designed for thumbs first.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cs-col rev d2">
+    <div>
+      <div class="cs-col-label">The Build</div>
+      <div class="cs-col-body">
+        <p>Built the quiz logic in <strong>Typeform</strong> and the surrounding funnel pages in <strong>Webflow</strong>, connecting them via embed and custom redirects based on quiz outcomes.</p>
+        <p>Each results page was a bespoke landing page with a personalised headline, social proof relevant to that segment, and a single, clear CTA.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-banner rev">
+  <!-- <img src="../images/funnel-banner-4.jpg" alt="Results page"> -->
+  <span class="cs-banner-placeholder">Image — Results Pages / Final Design</span>
+</div>
+
+<section class="cs-section">
+  <div class="cs-section-heading rev">
+    <div class="cs-section-num">04 —</div>
+    <h2 class="cs-section-title">Results<br>&amp; Learnings</h2>
+  </div>
+
+  <div class="cs-col rev d1">
+    <div>
+      <div class="cs-col-label">The Outcome</div>
+      <div class="cs-col-body">
+        <p>The quiz funnel outperformed the original landing page significantly, with a higher conversion rate and lower cost-per-acquisition across the client's product range.</p>
+        <p>The segmentation data also gave the client valuable insight into their audience's needs for future product development.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-col rev d2">
+    <div>
+      <div class="cs-col-label">Key Learnings</div>
+      <ul class="cs-list">
+        <li><strong>Personalisation Works:</strong> Routing users to relevant offers, rather than a generic page, made the biggest difference.</li>
+        <li><strong>Brevity Matters:</strong> Quiz completion dropped with each additional question — 5 was the sweet spot.</li>
+        <li><strong>Mobile is Everything:</strong> Over 80% of traffic arrived on mobile. Desktop was an afterthought.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="cs-next rev">
+  <a href="autodesk-tooltips.html" class="cs-next-btn">Next Project →</a>
+</div>
+
+<footer>
+  <span>Erik Lachapelle</span>
+  <span>Product Designer &amp; AI Magician</span>
+  <span>Toronto — 2024</span>
+</footer>
+
+<script>
+(function(){
+  const cv=document.getElementById('grain'),cx=cv.getContext('2d');let f=0;
+  function resize(){cv.width=window.innerWidth;cv.height=window.innerHeight;cv.style.cssText='position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9000;';}
+  function draw(){const w=cv.width,h=cv.height,img=cx.createImageData(w,h),d=img.data;for(let i=0;i<d.length;i+=4){const v=Math.random()*190|0;d[i]=Math.min(255,v+28|0);d[i+1]=Math.min(255,v+12|0);d[i+2]=v*.55|0;d[i+3]=15+(Math.random()*10|0);}cx.putImageData(img,0,0);}
+  function loop(){if(++f%3===0)draw();requestAnimationFrame(loop);}
+  resize();window.addEventListener('resize',resize);loop();
+})();
+(function(){
+  const sl=document.getElementById('scanline');
+  function sweep(){sl.style.transition='none';sl.style.top='0px';sl.style.opacity='1';const h=document.body.scrollHeight;requestAnimationFrame(()=>{sl.style.transition=`top ${h/420}s linear,opacity .3s`;sl.style.top=h+'px';setTimeout(()=>{sl.style.opacity='0';},(h/420)*1000-300);});}
+  setTimeout(()=>{sweep();setInterval(sweep,9000);},2000);
+})();
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.07});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
