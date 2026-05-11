@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autodesk Tooltips — Erik Lachapelle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:            #eae4da;
+  --bg-2:          #e1dbd0;
+  --bg-3:          #d4cdbf;
+  --bg-card:       #ddd7cb;
+  --amber:         #8a5a12;
+  --amber-mid:     #a87020;
+  --amber-dim:     #c49038;
+  --amber-pale:    rgba(138,90,18,0.08);
+  --text:          #1e1a13;
+  --text-mid:      #3a3020;
+  --text-dim:      #7a7060;
+  --text-faint:    #a89e8c;
+  --border:        rgba(100,72,18,0.13);
+  --border-mid:    rgba(100,72,18,0.24);
+  --border-strong: rgba(100,72,18,0.50);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Barlow Condensed',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+#grain{position:fixed;inset:0;pointer-events:none;z-index:9000;opacity:.46;mix-blend-mode:multiply;}
+#vignette{position:fixed;inset:0;pointer-events:none;z-index:8999;background:radial-gradient(ellipse 90% 80% at 50% 40%,transparent 30%,rgba(155,135,100,.22) 100%);}
+#scanline{position:fixed;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(184,120,48,.18),rgba(184,120,48,.28),rgba(184,120,48,.18),transparent);pointer-events:none;z-index:8998;opacity:0;}
+
+::-webkit-scrollbar{width:2px;}
+::-webkit-scrollbar-track{background:var(--bg-2);}
+::-webkit-scrollbar-thumb{background:var(--amber-dim);}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;}
+.nav-badge{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--border-strong);padding:7px 14px 7px 10px;background:rgba(234,228,218,0.88);backdrop-filter:blur(8px);text-decoration:none;}
+.badge-icon{position:relative;width:20px;height:20px;border:1px solid var(--border-mid);flex-shrink:0;}
+.badge-icon::before{content:'';position:absolute;width:1px;height:11px;background:var(--amber);left:50%;top:50%;transform:translate(-50%,-50%);}
+.badge-icon::after{content:'';position:absolute;width:11px;height:1px;background:var(--amber);left:50%;top:50%;transform:translate(-50%,-50%);}
+.badge-text{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.2em;color:var(--text-mid);text-transform:uppercase;white-space:nowrap;}
+.nav-status{display:flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.22em;color:var(--text-faint);text-transform:uppercase;}
+.pulse{width:5px;height:5px;border-radius:50%;background:var(--amber);animation:blink 2.4s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}55%{opacity:.2}}
+
+.cs-intro{padding:120px 28px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;border-bottom:1px solid var(--border);}
+.cs-title{font-size:clamp(64px,9vw,112px);font-weight:700;letter-spacing:-.02em;text-transform:uppercase;color:var(--text);line-height:.92;margin-bottom:24px;}
+.cs-subtitle{font-size:clamp(22px,3vw,32px);font-weight:300;letter-spacing:.04em;color:var(--text-mid);margin-bottom:16px;}
+.cs-description{font-size:15px;font-weight:300;letter-spacing:.06em;line-height:1.8;color:var(--text-dim);max-width:400px;margin-bottom:32px;}
+
+.cs-meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.cs-meta-card{border:1px solid var(--border-mid);background:var(--bg-card);padding:22px 20px 24px;}
+.cs-meta-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:14px;}
+.cs-meta-value{font-size:15px;font-weight:300;letter-spacing:.06em;line-height:1.65;color:var(--text-mid);}
+
+.cs-banner{width:100%;aspect-ratio:16/7;background:var(--bg-3);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.cs-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 36px,rgba(100,72,18,.05) 36px,rgba(100,72,18,.05) 37px),repeating-linear-gradient(90deg,transparent,transparent 36px,rgba(100,72,18,.05) 36px,rgba(100,72,18,.05) 37px);}
+.cs-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85;mix-blend-mode:multiply;}
+.cs-banner-placeholder{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.22em;color:var(--text-faint);text-transform:uppercase;position:relative;z-index:1;border:1px solid var(--border);padding:8px 16px;background:rgba(234,228,218,.5);}
+
+.cs-section{padding:80px 28px;display:grid;grid-template-columns:280px 1fr 1fr;gap:48px 40px;border-bottom:1px solid var(--border);}
+.cs-section-heading{grid-column:1;}
+.cs-section-num{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:10px;}
+.cs-section-title{font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-.01em;text-transform:uppercase;color:var(--text);line-height:1;margin-bottom:14px;}
+.cs-section-sub{font-size:14px;font-weight:300;font-style:italic;letter-spacing:.06em;line-height:1.7;color:var(--text-dim);max-width:240px;}
+.cs-pullquote{border-left:2px solid var(--amber-dim);padding:8px 0 8px 16px;margin-top:28px;}
+.cs-pullquote p{font-size:16px;font-weight:500;letter-spacing:.04em;line-height:1.5;color:var(--text);}
+
+.cs-col{display:flex;flex-direction:column;gap:20px;}
+.cs-col-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:6px;}
+.cs-col-body{font-size:15px;font-weight:300;letter-spacing:.05em;line-height:1.8;color:var(--text-mid);}
+.cs-col-body p{margin-bottom:14px;}
+.cs-col-body p:last-child{margin-bottom:0;}
+.cs-col-body strong{color:var(--text);font-weight:500;}
+
+.cs-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.cs-list li{font-size:15px;font-weight:300;letter-spacing:.05em;line-height:1.7;color:var(--text-mid);padding-left:16px;position:relative;}
+.cs-list li::before{content:'—';position:absolute;left:0;color:var(--amber-dim);font-weight:400;}
+.cs-list li strong{color:var(--text);font-weight:500;}
+
+.cs-card{border:1px solid var(--border-mid);background:var(--bg-card);padding:24px 22px 26px;display:flex;flex-direction:column;gap:14px;}
+.cs-card-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;}
+.cs-card-body{font-size:15px;font-weight:300;letter-spacing:.05em;line-height:1.8;color:var(--text-mid);}
+.cs-card-body p{margin-bottom:12px;}
+.cs-card-body p:last-child{margin-bottom:0;}
+.cs-card-body strong{color:var(--text);font-weight:500;}
+
+.cs-span-2{grid-column:2 / span 2;}
+
+.cs-next{padding:80px 28px;display:flex;justify-content:center;border-bottom:1px solid var(--border);}
+.cs-next-btn{display:inline-flex;align-items:center;gap:14px;border:1px solid var(--border-strong);padding:20px 52px;background:var(--text);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;text-decoration:none;transition:background .25s;}
+.cs-next-btn:hover{background:var(--amber);}
+
+footer{padding:15px 28px;border-top:1px solid var(--border-mid);display:flex;justify-content:space-between;align-items:center;background:var(--bg-2);}
+footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text-faint);letter-spacing:.14em;text-transform:uppercase;}
+
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.rev{opacity:0;transform:translateY(12px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
+.rev.in{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}.d4{transition-delay:.24s}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1024px){.cs-section{grid-template-columns:220px 1fr 1fr;gap:36px 28px;}}
+@media(max-width:860px){
+  .cs-intro{grid-template-columns:1fr;padding-top:96px;gap:36px;}
+  .cs-section{grid-template-columns:1fr 1fr;padding:60px 28px;gap:32px 28px;}
+  .cs-section-heading{grid-column:1 / -1;}
+  .cs-span-2{grid-column:1 / -1;}
+  .cs-banner{aspect-ratio:16/8;}
+}
+@media(max-width:600px){
+  nav{padding:14px 16px;}
+  .nav-status{display:none;}
+  .cs-intro{padding:80px 16px 40px;gap:24px;}
+  .cs-meta-grid{grid-template-columns:1fr 1fr;}
+  .cs-section{grid-template-columns:1fr;padding:48px 16px;gap:24px;}
+  .cs-section-heading{grid-column:1;}
+  .cs-col{gap:12px;}
+  .cs-span-2{grid-column:1;}
+  .cs-banner{aspect-ratio:4/3;}
+  .cs-next{padding:48px 16px;}
+  .cs-next-btn{padding:16px 24px;width:100%;justify-content:center;}
+  footer{padding:12px 16px;flex-direction:column;gap:6px;align-items:flex-start;}
+}
+@media(max-width:400px){.cs-meta-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<canvas id="grain"></canvas>
+<div id="vignette"></div>
+<div id="scanline"></div>
+
+<nav>
+  <a href="../index.html" class="nav-badge">
+    <div class="badge-icon"></div>
+    <span class="badge-text">Erik Lachapelle — Product Designer</span>
+  </a>
+  <div class="nav-status">
+    <div class="pulse"></div>
+    Toronto, CA &nbsp;·&nbsp; Available
+  </div>
+</nav>
+
+<section class="cs-intro">
+  <div class="rev">
+    <h1 class="cs-title">Autodesk<br>Tooltips</h1>
+    <p class="cs-subtitle">Making complex software approachable.</p>
+    <p class="cs-description">Writing and designing contextual tooltips for a professional 3D modelling application used by engineers and designers worldwide.</p>
+  </div>
+
+  <div class="cs-meta-grid rev d2">
+    <div class="cs-meta-card">
+      <div class="cs-meta-label">Role</div>
+      <div class="cs-meta-value">UX writer &amp; content designer</div>
+    </div>
+    <div class="cs-meta-card">
+      <div class="cs-meta-label">Tools</div>
+      <div class="cs-meta-value">Figma, Autodesk software, Confluence</div>
+    </div>
+    <div class="cs-meta-card">
+      <div class="cs-meta-label">Timeline</div>
+      <div class="cs-meta-value">Ongoing — shipped in phases</div>
+    </div>
+    <div class="cs-meta-card">
+      <div class="cs-meta-label">Outcome</div>
+      <div class="cs-meta-value">Reduced support volume and improved onboarding completion rates.</div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-banner rev">
+  <!-- <img src="../images/autodesk-banner-1.jpg" alt="Autodesk software UI"> -->
+  <span class="cs-banner-placeholder">Image — Autodesk UI / Tooltip Context</span>
+</div>
+
+<section class="cs-section">
+  <div class="cs-section-heading rev">
+    <div class="cs-section-num">01 —</div>
+    <h2 class="cs-section-title">The<br>Problem</h2>
+    <p class="cs-section-sub">Professional tools are powerful. They're also intimidating.</p>
+    <div class="cs-pullquote">
+      <p>"Users shouldn't need a manual to find a button."</p>
+    </div>
+  </div>
+
+  <div class="cs-col rev d1">
+    <div>
+      <div class="cs-col-label">The Context</div>
+      <div class="cs-col-body">
+        <p>Autodesk's 3D modelling tools are industry-standard but notoriously dense. New users faced a steep learning curve, and even experienced users struggled to discover features outside their established workflows.</p>
+        <p>The result: high support ticket volume, low feature adoption, and frustrated users.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-col rev d2">
+    <div>
+      <div class="cs-col-label">The Gap</div>
+      <div class="cs-col-body">
+        <p>Existing tooltip copy was either missing entirely or written by engineers — technically accurate, but not written for humans learning a new skill under time pressure.</p>
+        <p>There was an opportunity to use clear, contextual microcopy to teach users in the moment, without pulling them out of their workflow.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-span-2 rev d3">
+    <div class="cs-card">
+      <div class="cs-card-label">The Hypothesis</div>
+      <div class="cs-card-body">
+        <p>If we replace generic or missing tooltip copy with clear, contextual, action-oriented microcopy — written for the user's current task, not a feature spec — we can reduce friction and support load while increasing feature adoption.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-banner rev">
+  <!-- <img src="../images/autodesk-banner-2.jpg" alt="Tooltip research"> -->
+  <span class="cs-banner-placeholder">Image — Research / Audit Screenshots</span>
+</div>
+
+<section class="cs-section">
+  <div class="cs-section-heading rev">
+    <div class="cs-section-num">02 —</div>
+    <h2 class="cs-section-title">Research<br>&amp; Audit</h2>
+    <p class="cs-section-sub">You can't write better copy without understanding what's broken.</p>
+  </div>
+
+  <div class="cs-col rev d1">
+    <div>
+      <div class="cs-col-label">Content Audit</div>
+      <ul class="cs-list">
+        <li><strong>Inventory:</strong> Catalogued every existing tooltip across the target feature set — noting what was present, missing, or misleading.</li>
+        <li><strong>Pattern Analysis:</strong> Identified the most common failure modes: jargon-heavy labels, vague descriptions, and tooltips that restated the button name.</li>
+        <li><strong>Support Data:</strong> Cross-referenced with support tickets to prioritise which tools caused the most confusion.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cs-col rev d2">
+    <div>
+      <div class="cs-col-label">User Research</div>
+      <div class="cs-col-body">
+        <p>Observed users during onboarding sessions to understand how they encountered the software for the first time and where they paused, backtracked, or gave up.</p>
+        <p>Key finding: users rarely read — they scan for confirmation that they're about to do the right thing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-banner rev">
+  <!-- <img src="../images/autodesk-banner-3.jpg" alt="Writing and design process"> -->
+  <span class="cs-banner-placeholder">Image — Writing Process / Before & After</span>
+</div>
+
+<section class="cs-section">
+  <div class="cs-section-heading rev">
+    <div class="cs-section-num">03 —</div>
+    <h2 class="cs-section-title">Writing<br>&amp; Design</h2>
+    <p class="cs-section-sub">Microcopy that earns its one line of space.</p>
+  </div>
+
+  <div class="cs-col rev d1">
+    <div>
+      <div class="cs-col-label">Writing Principles</div>
+      <ul class="cs-list">
+        <li><strong>Lead with the outcome:</strong> Tell users what this tool does for them, not what it is.</li>
+        <li><strong>Plain language first:</strong> Replace technical jargon with words a new user would actually know.</li>
+        <li><strong>One idea per tooltip:</strong> If a feature needs two sentences to explain, the UX might be the problem.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cs-col rev d2">
+    <div>
+      <div class="cs-col-label">Collaboration</div>
+      <div class="cs-col-body">
+        <p>Worked closely with the product and engineering teams to ensure accuracy, and with the design team to validate that copy fit within the visual constraints of each tooltip component.</p>
+        <p>Iterated on copy through rounds of review with subject matter experts, balancing technical precision with plain-language clarity.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-span-2 rev d3">
+    <div class="cs-card">
+      <div class="cs-card-label">Style Guidelines Established</div>
+      <div class="cs-card-body">
+        <ul class="cs-list">
+          <li><strong>Format:</strong> Verb-led labels ("Extrude face") + one-sentence description of outcome, not mechanism.</li>
+          <li><strong>Length:</strong> Maximum 15 words for the description. If it needed more, flag for UX review.</li>
+          <li><strong>Tone:</strong> Direct and confident — like a knowledgeable colleague, not a manual.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-banner rev">
+  <!-- <img src="../images/autodesk-banner-4.jpg" alt="Final tooltips in product"> -->
+  <span class="cs-banner-placeholder">Image — Final Tooltips in Product</span>
+</div>
+
+<section class="cs-section">
+  <div class="cs-section-heading rev">
+    <div class="cs-section-num">04 —</div>
+    <h2 class="cs-section-title">Results<br>&amp; Impact</h2>
+  </div>
+
+  <div class="cs-col rev d1">
+    <div>
+      <div class="cs-col-label">The Outcome</div>
+      <div class="cs-col-body">
+        <p>After shipping the first phase of revised tooltips, the team saw a measurable reduction in support tickets related to the affected feature set, and an increase in feature adoption among new users completing onboarding.</p>
+        <p>The style guidelines established during this project became the foundation for Autodesk's broader microcopy standards.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-col rev d2">
+    <div>
+      <div class="cs-col-label">Key Learnings</div>
+      <ul class="cs-list">
+        <li><strong>Words are UX:</strong> The right copy at the right moment can eliminate the need for onboarding entirely.</li>
+        <li><strong>Data-driven writing:</strong> Support ticket analysis was the most valuable input for prioritising what to write first.</li>
+        <li><strong>Standards compound:</strong> Building a style guide meant each subsequent phase shipped faster and more consistently.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="cs-next rev">
+  <a href="leaderboard-app.html" class="cs-next-btn">Next Project →</a>
+</div>
+
+<footer>
+  <span>Erik Lachapelle</span>
+  <span>Product Designer &amp; AI Magician</span>
+  <span>Toronto — 2024</span>
+</footer>
+
+<script>
+(function(){
+  const cv=document.getElementById('grain'),cx=cv.getContext('2d');let f=0;
+  function resize(){cv.width=window.innerWidth;cv.height=window.innerHeight;cv.style.cssText='position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9000;';}
+  function draw(){const w=cv.width,h=cv.height,img=cx.createImageData(w,h),d=img.data;for(let i=0;i<d.length;i+=4){const v=Math.random()*190|0;d[i]=Math.min(255,v+28|0);d[i+1]=Math.min(255,v+12|0);d[i+2]=v*.55|0;d[i+3]=15+(Math.random()*10|0);}cx.putImageData(img,0,0);}
+  function loop(){if(++f%3===0)draw();requestAnimationFrame(loop);}
+  resize();window.addEventListener('resize',resize);loop();
+})();
+(function(){
+  const sl=document.getElementById('scanline');
+  function sweep(){sl.style.transition='none';sl.style.top='0px';sl.style.opacity='1';const h=document.body.scrollHeight;requestAnimationFrame(()=>{sl.style.transition=`top ${h/420}s linear,opacity .3s`;sl.style.top=h+'px';setTimeout(()=>{sl.style.opacity='0';},(h/420)*1000-300);});}
+  setTimeout(()=>{sweep();setInterval(sweep,9000);},2000);
+})();
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.07});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
