@@ -110,6 +110,24 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
 .rev.in{opacity:1;transform:translateY(0);}
 .d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}.d4{transition-delay:.24s}
 
+/* app screenshot strip */
+.cs-app-screens{
+  display:flex;gap:3px;overflow:hidden;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.cs-app-screens img{
+  flex:1;min-width:0;height:480px;
+  object-fit:cover;object-position:center top;
+}
+
+/* inline image inside gap items */
+.cs-gap-img{
+  width:100%;margin-top:14px;
+  border:1px solid var(--border-mid);
+  overflow:hidden;display:block;
+}
+.cs-gap-img img{width:100%;display:block;}
+
 /* ══ RESPONSIVE ══ */
 @media(max-width:1024px){.cs-section{grid-template-columns:220px 1fr 1fr;gap:36px 28px;}}
 @media(max-width:860px){
@@ -182,8 +200,7 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
 
 <!-- ══ BANNER 1 ══ -->
 <div class="cs-banner rev">
-  <!-- <img src="../images/leaderboard-banner-1.jpg" alt="People skipping in a gym"> -->
-  <span class="cs-banner-placeholder">Image — Gym / Athletes in Action</span>
+  <img src="../images/leaderboard-images/leader-banner.png" alt="Athletes in the gym">
 </div>
 
 <!-- ══ SECTION 1: THE PROBLEM ══ -->
@@ -214,10 +231,12 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
   </div>
 </section>
 
-<!-- ══ BANNER 2 ══ -->
-<div class="cs-banner rev">
-  <!-- <img src="../images/leaderboard-banner-2.jpg" alt="App screens"> -->
-  <span class="cs-banner-placeholder">Image — App Screens / Homepage, Sign-in, Score Entry</span>
+<!-- ══ APP SCREENSHOTS ══ -->
+<div class="cs-app-screens rev">
+  <img src="../images/leaderboard-images/lead-main.png" alt="Leaderboard main view">
+  <img src="../images/leaderboard-images/lead-login.png" alt="Sign in">
+  <img src="../images/leaderboard-images/lead-submit.png" alt="Submit score">
+  <img src="../images/leaderboard-images/lead-menu-rxpanded.png" alt="Navigation menu">
 </div>
 
 <!-- ══ SECTION 2: THE APPROACH ══ -->
@@ -278,6 +297,9 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
         <div class="cs-gap-tag">The Content Design Fail</div>
         <div class="cs-gap-problem">When a user tried to overwrite a score, the app threw a generic error: "Failed to submit."</div>
         <div class="cs-gap-fix"><strong>The Fix:</strong> I rewrote the error handling logic to provide specific guidance: "You already have a score. Please delete your previous entry to submit a new one."</div>
+        <div class="cs-gap-img">
+          <img src="../images/leaderboard-images/error-msging -compare.png" alt="Error messaging before and after">
+        </div>
       </div>
       <div class="cs-gap-item">
         <div class="cs-gap-tag">The Responsive Fail</div>
