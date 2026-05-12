@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom Sales Funnel — Erik Lachapelle</title>
+<title>Influencer Quiz Funnel — Erik Lachapelle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -49,8 +49,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 28px;display:fl
 @keyframes blink{0%,100%{opacity:1}55%{opacity:.2}}
 
 .cs-intro{padding:120px 28px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;border-bottom:1px solid var(--border);}
-.cs-title{font-size:clamp(64px,9vw,112px);font-weight:700;letter-spacing:-.02em;text-transform:uppercase;color:var(--text);line-height:.92;margin-bottom:24px;}
-.cs-subtitle{font-size:clamp(22px,3vw,32px);font-weight:300;letter-spacing:.04em;color:var(--text-mid);margin-bottom:16px;}
+.cs-title{font-size:clamp(56px,8vw,100px);font-weight:700;letter-spacing:-.02em;text-transform:uppercase;color:var(--text);line-height:.92;margin-bottom:24px;}
+.cs-subtitle{font-size:clamp(20px,2.8vw,30px);font-weight:300;letter-spacing:.04em;color:var(--text-mid);margin-bottom:16px;}
 .cs-description{font-size:15px;font-weight:300;letter-spacing:.06em;line-height:1.8;color:var(--text-dim);max-width:400px;margin-bottom:32px;}
 .cs-cta{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border-strong);padding:12px 20px;background:var(--text);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .25s;}
 .cs-cta:hover{background:var(--amber);}
@@ -71,7 +71,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 28px;display:fl
 .cs-section-title{font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-.01em;text-transform:uppercase;color:var(--text);line-height:1;margin-bottom:14px;}
 .cs-section-sub{font-size:14px;font-weight:300;font-style:italic;letter-spacing:.06em;line-height:1.7;color:var(--text-dim);max-width:240px;}
 .cs-pullquote{border-left:2px solid var(--amber-dim);padding:8px 0 8px 16px;margin-top:28px;}
-.cs-pullquote p{font-size:16px;font-weight:500;letter-spacing:.04em;line-height:1.5;color:var(--text);}
+.cs-pullquote p{font-size:15px;font-weight:500;letter-spacing:.04em;line-height:1.6;color:var(--text);}
+.cs-pullquote cite{display:block;margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase;font-style:normal;}
 
 .cs-col{display:flex;flex-direction:column;gap:20px;}
 .cs-col-label{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.28em;color:var(--amber);text-transform:uppercase;margin-bottom:6px;}
@@ -80,7 +81,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 28px;display:fl
 .cs-col-body p:last-child{margin-bottom:0;}
 .cs-col-body strong{color:var(--text);font-weight:500;}
 
-.cs-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.cs-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
 .cs-list li{font-size:15px;font-weight:300;letter-spacing:.05em;line-height:1.7;color:var(--text-mid);padding-left:16px;position:relative;}
 .cs-list li::before{content:'—';position:absolute;left:0;color:var(--amber-dim);font-weight:400;}
 .cs-list li strong{color:var(--text);font-weight:500;}
@@ -93,6 +94,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 28px;display:fl
 .cs-card-body strong{color:var(--text);font-weight:500;}
 
 .cs-span-2{grid-column:2 / span 2;}
+
+.cs-pipeline{display:flex;flex-direction:column;gap:3px;margin-top:4px;}
+.cs-pipeline-step{border:1px solid var(--border-mid);background:var(--bg-2);padding:14px 16px;display:flex;gap:14px;align-items:flex-start;}
+.cs-pipeline-num{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--amber);flex-shrink:0;padding-top:2px;}
+.cs-pipeline-body{font-size:14px;font-weight:300;letter-spacing:.05em;line-height:1.65;color:var(--text-mid);}
+.cs-pipeline-body strong{color:var(--text);font-weight:500;}
 
 .cs-next{padding:80px 28px;display:flex;justify-content:center;border-bottom:1px solid var(--border);}
 .cs-next-btn{display:inline-flex;align-items:center;gap:14px;border:1px solid var(--border-strong);padding:20px 52px;background:var(--text);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;text-decoration:none;transition:background .25s;}
@@ -121,9 +128,8 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
   .cs-intro{padding:80px 16px 40px;gap:24px;}
   .cs-meta-grid{grid-template-columns:1fr 1fr;}
   .cs-section{grid-template-columns:1fr;padding:48px 16px;gap:24px;}
-  .cs-section-heading{grid-column:1;}
+  .cs-section-heading,.cs-span-2{grid-column:1;}
   .cs-col{gap:12px;}
-  .cs-span-2{grid-column:1;}
   .cs-banner{aspect-ratio:4/3;}
   .cs-next{padding:48px 16px;}
   .cs-next-btn{padding:16px 24px;width:100%;justify-content:center;}
@@ -149,45 +155,49 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
   </div>
 </nav>
 
+<!-- ══ INTRO ══ -->
 <section class="cs-intro">
   <div class="rev">
-    <h1 class="cs-title">Custom<br>Sales<br>Funnel</h1>
-    <p class="cs-subtitle">Turning followers into customers.</p>
-    <p class="cs-description">Building a quiz-based sales funnel for an influencer to convert their audience into paying customers.</p>
+    <h1 class="cs-title">Influencer<br>Quiz<br>Funnel</h1>
+    <p class="cs-subtitle">Turning Instagram traffic into qualified leads.</p>
+    <a href="#" class="cs-cta">Take The Quiz →</a>
   </div>
 
   <div class="cs-meta-grid rev d2">
     <div class="cs-meta-card">
       <div class="cs-meta-label">Role</div>
-      <div class="cs-meta-value">UX designer &amp; developer</div>
+      <div class="cs-meta-value">Product designer &amp; developer</div>
     </div>
     <div class="cs-meta-card">
       <div class="cs-meta-label">Tools</div>
-      <div class="cs-meta-value">Figma, Webflow, Typeform</div>
+      <div class="cs-meta-value">Figma, Bolt.new, Claude</div>
     </div>
     <div class="cs-meta-card">
       <div class="cs-meta-label">Timeline</div>
-      <div class="cs-meta-value">3 months (discovery to launch)</div>
+      <div class="cs-meta-value">2 months</div>
     </div>
     <div class="cs-meta-card">
       <div class="cs-meta-label">Outcome</div>
-      <div class="cs-meta-value">Measurable lift in conversion rate from social audience.</div>
+      <div class="cs-meta-value">200+ leads and 15 conversions in the first month post-launch.</div>
     </div>
   </div>
 </section>
 
+<!-- ══ BANNER 1 ══ -->
 <div class="cs-banner rev">
-  <!-- <img src="../images/funnel-banner-1.jpg" alt="Sales funnel hero"> -->
-  <span class="cs-banner-placeholder">Image — Hero / Funnel Overview</span>
+  <!-- <img src="../images/funnel-banner-1.jpg" alt="Quiz funnel hero"> -->
+  <span class="cs-banner-placeholder">Image — Quiz / Hero Screenshot</span>
 </div>
 
+<!-- ══ SECTION 1: THE PROBLEM ══ -->
 <section class="cs-section">
   <div class="cs-section-heading rev">
     <div class="cs-section-num">01 —</div>
     <h2 class="cs-section-title">The<br>Problem</h2>
-    <p class="cs-section-sub">Social followers don't automatically become customers.</p>
+    <p class="cs-section-sub">Struggling to turn followers into customers.</p>
     <div class="cs-pullquote">
-      <p>"Likes don't pay the bills."</p>
+      <p>"I built a large audience in my niche, but I'm having trouble monetizing them."</p>
+      <cite>— JD (the client)</cite>
     </div>
   </div>
 
@@ -195,19 +205,23 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
     <div>
       <div class="cs-col-label">The Context</div>
       <div class="cs-col-body">
-        <p>The client had built a significant social media following but was struggling to convert that audience into revenue.</p>
-        <p>Their existing link-in-bio sent followers to a generic landing page with a high drop-off rate and no personalisation.</p>
+        <p>I worked with a CrossFit coach to design and build a quiz-based sales funnel.</p>
+        <p>The business had grown through Instagram, building an audience of engaged followers. But converting those followers into paying customers relied on manual processes.</p>
       </div>
     </div>
   </div>
 
   <div class="cs-col rev d2">
     <div>
-      <div class="cs-col-label">The Opportunity</div>
+      <div class="cs-col-label">The Friction</div>
       <div class="cs-col-body">
-        <p>A quiz-based funnel would let us segment the audience by their specific needs, then route each person to the product or offer most relevant to them.</p>
-        <p>Personalisation at scale — without needing a sales team.</p>
+        <p>The gap between follower and paying customer was inefficient and time-consuming.</p>
       </div>
+      <ul class="cs-list">
+        <li>Every lead required direct interaction</li>
+        <li>Many leads were unqualified</li>
+        <li>There was no structured way to assess an athlete before a call</li>
+      </ul>
     </div>
   </div>
 
@@ -215,113 +229,209 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
     <div class="cs-card">
       <div class="cs-card-label">The Hypothesis</div>
       <div class="cs-card-body">
-        <p>If we replace a generic landing page with a short, engaging quiz that segments users and surfaces the right offer, we can dramatically increase the conversion rate without increasing ad spend.</p>
+        <p>JD needed an engaging way to go from follower to customer. People like to take quizzes, and JD's followers are a niche audience who can take the quiz to learn more about their unique interests. A quiz allows us to:</p>
+        <ul class="cs-list">
+          <li>Pre-qualify athletes before sales conversations</li>
+          <li>Reduce time spent on unqualified calls</li>
+          <li>Create a scalable lead funnel</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══ BANNER 2 ══ -->
 <div class="cs-banner rev">
-  <!-- <img src="../images/funnel-banner-2.jpg" alt="Quiz flow"> -->
-  <span class="cs-banner-placeholder">Image — Quiz Flow / Wireframes</span>
+  <!-- <img src="../images/funnel-banner-2.jpg" alt="Whiteboarding with client"> -->
+  <span class="cs-banner-placeholder">Image — Whiteboarding with the Client</span>
 </div>
 
+<!-- ══ SECTION 2: RESEARCH & DESIGN ══ -->
 <section class="cs-section">
   <div class="cs-section-heading rev">
     <div class="cs-section-num">02 —</div>
-    <h2 class="cs-section-title">Research<br>&amp; Strategy</h2>
-    <p class="cs-section-sub">Understanding the audience before designing the experience.</p>
+    <h2 class="cs-section-title">Research<br>&amp; Design</h2>
+    <p class="cs-section-sub">Why A Quiz?</p>
   </div>
 
   <div class="cs-col rev d1">
     <div>
-      <div class="cs-col-label">Audience Research</div>
-      <ul class="cs-list">
-        <li><strong>Segmentation:</strong> Identified 3 distinct audience personas based on comments, DMs, and poll data from the client's social channels.</li>
-        <li><strong>Pain Points:</strong> Each segment had a different primary problem the client's products could solve.</li>
-        <li><strong>Drop-off Analysis:</strong> Audited the existing landing page to identify where and why users were leaving.</li>
-      </ul>
+      <div class="cs-col-label">Why A Quiz?</div>
+      <div class="cs-col-body">
+        <p>Quizzes turn passive followers into active participants. They create a quick, personalized experience that builds investment, while helping users self-identify their needs.</p>
+        <p>It makes the final offer feel relevant and easier to buy into.</p>
+      </div>
     </div>
   </div>
 
   <div class="cs-col rev d2">
     <div>
-      <div class="cs-col-label">Funnel Strategy</div>
+      <div class="cs-col-label">Building The Quiz</div>
       <div class="cs-col-body">
-        <p>Designed a 5-question quiz to identify each visitor's segment, then route them to a tailored results page with a personalised offer and CTA.</p>
-        <p>Kept the quiz short enough to maintain engagement, but long enough to gather meaningful data for segmentation.</p>
+        <p>Between the client and myself, we brought over a decade of CrossFit coaching experience. We used that to define what different levels of athletes actually look like in practice.</p>
+        <p>We translated those mental models into measurable benchmarks and scoring logic.</p>
+        <p>As the quiz evolved, the scoring system became more complex. Getting this right required understanding how the logic should work and shaping the system accordingly.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══ BANNER 3 ══ -->
 <div class="cs-banner rev">
-  <!-- <img src="../images/funnel-banner-3.jpg" alt="Design mockups"> -->
-  <span class="cs-banner-placeholder">Image — Figma / Design Mockups</span>
+  <!-- <img src="../images/funnel-banner-3.jpg" alt="Quiz build process"> -->
+  <span class="cs-banner-placeholder">Image — Quiz UI / Build Process</span>
 </div>
 
+<!-- ══ SECTION 3: BUILD & ITERATE ══ -->
 <section class="cs-section">
   <div class="cs-section-heading rev">
     <div class="cs-section-num">03 —</div>
-    <h2 class="cs-section-title">Design<br>&amp; Build</h2>
-    <p class="cs-section-sub">Matching the client's brand while optimising for conversion.</p>
+    <h2 class="cs-section-title">Build<br>&amp; Iterate</h2>
+    <p class="cs-section-sub">Fast iteration without losing control of the experience.</p>
   </div>
 
   <div class="cs-col rev d1">
     <div>
-      <div class="cs-col-label">Design Decisions</div>
+      <div class="cs-col-label">Development</div>
+      <div class="cs-col-body">
+        <p>The product was designed and built using <strong>Bolt.new</strong>, with support from <strong>Claude</strong>. Figma was used selectively to define UI components and guide specific changes.</p>
+        <p>The workflow was iterative:</p>
+      </div>
       <ul class="cs-list">
-        <li><strong>Brand Alignment:</strong> The quiz matched the client's existing visual identity so the transition from social felt seamless.</li>
-        <li><strong>Progress Indicator:</strong> A visible progress bar reduced abandonment by giving users a sense of completion.</li>
-        <li><strong>Mobile-First:</strong> The majority of traffic came from Instagram, so every interaction was designed for thumbs first.</li>
+        <li>Define structure and logic</li>
+        <li>Build directly in the product</li>
+        <li>Test and refine in real time</li>
       </ul>
+      <div class="cs-col-body" style="margin-top:14px;">
+        <p>This allowed for fast iteration while maintaining control over the experience.</p>
+      </div>
     </div>
   </div>
 
   <div class="cs-col rev d2">
     <div>
-      <div class="cs-col-label">The Build</div>
+      <div class="cs-col-label">Handling the Data</div>
       <div class="cs-col-body">
-        <p>Built the quiz logic in <strong>Typeform</strong> and the surrounding funnel pages in <strong>Webflow</strong>, connecting them via embed and custom redirects based on quiz outcomes.</p>
-        <p>Each results page was a bespoke landing page with a personalised headline, social proof relevant to that segment, and a single, clear CTA.</p>
+        <p>I built a data pipeline for the client to view the quiz leads and results.</p>
+      </div>
+      <div class="cs-pipeline">
+        <div class="cs-pipeline-step">
+          <span class="cs-pipeline-num">01</span>
+          <span class="cs-pipeline-body">User completes quiz — data sends to <strong>Supabase</strong></span>
+        </div>
+        <div class="cs-pipeline-step">
+          <span class="cs-pipeline-num">02</span>
+          <span class="cs-pipeline-body">Supabase triggers a webhook that populates a <strong>Google Sheet</strong></span>
+        </div>
+        <div class="cs-pipeline-step">
+          <span class="cs-pipeline-num">03</span>
+          <span class="cs-pipeline-body">Client opens the Sheet — sees the lead's name, email, and their level</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-span-2 rev d3">
+    <div class="cs-card">
+      <div class="cs-card-label">Test &amp; Repeat</div>
+      <div class="cs-card-body">
+        <p>The quiz went through multiple versions as the client's offering evolved. We tested the flow dozens of times, refining question clarity, scoring accuracy, and overall usability. Each pass brought the quiz closer to how athletes actually think about their performance.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══ BANNER 4 ══ -->
 <div class="cs-banner rev">
-  <!-- <img src="../images/funnel-banner-4.jpg" alt="Results page"> -->
-  <span class="cs-banner-placeholder">Image — Results Pages / Final Design</span>
+  <!-- <img src="../images/funnel-banner-4.jpg" alt="Analytics dashboard"> -->
+  <span class="cs-banner-placeholder">Image — Analytics / Data Dashboard</span>
 </div>
 
+<!-- ══ SECTION 4: DATA & ANALYTICS ══ -->
 <section class="cs-section">
   <div class="cs-section-heading rev">
     <div class="cs-section-num">04 —</div>
-    <h2 class="cs-section-title">Results<br>&amp; Learnings</h2>
+    <h2 class="cs-section-title">Data<br>&amp; Analytics</h2>
+    <p class="cs-section-sub">Tracking what matters to optimize what comes next.</p>
   </div>
 
   <div class="cs-col rev d1">
     <div>
-      <div class="cs-col-label">The Outcome</div>
+      <div class="cs-col-label">What I'm Tracking</div>
       <div class="cs-col-body">
-        <p>The quiz funnel outperformed the original landing page significantly, with a higher conversion rate and lower cost-per-acquisition across the client's product range.</p>
-        <p>The segmentation data also gave the client valuable insight into their audience's needs for future product development.</p>
+        <p>I built in lightweight analytics (Google Analytics and Microsoft Clarity) to track both behavior and perceived accuracy.</p>
       </div>
+      <ul class="cs-list">
+        <li><strong>Quiz completion rate</strong> — where users drop off in the flow</li>
+        <li><strong>Results page behavior (heatmaps)</strong> — how users interact with the most important conversion point</li>
+        <li><strong>User feedback</strong> ("Was this quiz accurate?") — whether the output aligns with user expectations</li>
+        <li><strong>Lead capture</strong> (submissions + conversions) — how many users move from quiz → customer</li>
+      </ul>
     </div>
   </div>
 
   <div class="cs-col rev d2">
     <div>
-      <div class="cs-col-label">Key Learnings</div>
+      <div class="cs-col-label">Why?</div>
+      <div class="cs-col-body">
+        <p>The goal isn't just to get users through the quiz — it's to understand:</p>
+      </div>
       <ul class="cs-list">
-        <li><strong>Personalisation Works:</strong> Routing users to relevant offers, rather than a generic page, made the biggest difference.</li>
-        <li><strong>Brevity Matters:</strong> Quiz completion dropped with each additional question — 5 was the sweet spot.</li>
-        <li><strong>Mobile is Everything:</strong> Over 80% of traffic arrived on mobile. Desktop was an afterthought.</li>
+        <li>Where friction exists</li>
+        <li>Whether the scoring feels credible and accurate</li>
+        <li>Where users hesitate before converting</li>
+      </ul>
+      <div class="cs-col-body" style="margin-top:14px;">
+        <p>The more analytics I can gather over time, the more I can optimize the funnel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BANNER 5 ══ -->
+<div class="cs-banner rev">
+  <!-- <img src="../images/funnel-banner-5.jpg" alt="Results and launch"> -->
+  <span class="cs-banner-placeholder">Image — Launch / Results Overview</span>
+</div>
+
+<!-- ══ SECTION 5: RESULTS & ROADMAP ══ -->
+<section class="cs-section">
+  <div class="cs-section-heading rev">
+    <div class="cs-section-num">05 —</div>
+    <h2 class="cs-section-title">Results<br>&amp; Roadmap</h2>
+  </div>
+
+  <div class="cs-col rev d1">
+    <div>
+      <div class="cs-col-label">The Launch</div>
+      <div class="cs-col-body">
+        <p>The quiz launched on April 12, 2026.</p>
+      </div>
+      <ul class="cs-list">
+        <li>~100 quiz completions in the first few days</li>
+        <li>Immediate lead capture through submissions</li>
+        <li>5 confirmed conversions</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cs-col rev d2">
+    <div>
+      <div class="cs-col-label">What's Next?</div>
+      <div class="cs-col-body">
+        <p>Early results suggest strong engagement, with clear opportunities to improve conversion at the results stage. The next phase is optimization.</p>
+      </div>
+      <ul class="cs-list">
+        <li>Analyze drop-off and completion rates</li>
+        <li>Review heatmaps and user behavior</li>
+        <li>Evaluate perceived accuracy through post-quiz feedback</li>
+        <li>Refine scoring and results experience</li>
       </ul>
     </div>
   </div>
 </section>
 
+<!-- ══ NEXT PROJECT ══ -->
 <div class="cs-next rev">
   <a href="autodesk-tooltips.html" class="cs-next-btn">Next Project →</a>
 </div>
