@@ -1,7 +1,17 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import MobileCarousel from '@/components/MobileCarousel';
 
 export const metadata = { title: 'The WOD Timer — Erik Lachapelle' };
+
+const CAROUSEL_SLIDES = [
+  { src: '/images/timer-images/timer-home.png',         alt: 'WOD Timer home screen' },
+  { src: '/images/timer-images/timer-work.png',         alt: 'Work interval timer' },
+  { src: '/images/timer-images/timer-rest.png',         alt: 'Rest interval timer' },
+  { src: '/images/timer-images/timer-countup.png',      alt: 'Count-up timer' },
+  { src: '/images/timer-images/timer-setup.png',        alt: 'Timer setup screen' },
+  { src: '/images/timer-images/timer-tabata-setup.png', alt: 'Tabata timer setup' },
+];
 
 export default function WodTimer() {
   return (
@@ -63,7 +73,7 @@ export default function WodTimer() {
 
       {/* BANNER 2 */}
       <div className="cs-banner rev">
-        <span className="cs-banner-placeholder">Image — Gym / Context Photography</span>
+        <Image src="/images/timer-images/timer-banner-two.png" alt="WOD Timer UI" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 2 */}
@@ -131,7 +141,7 @@ export default function WodTimer() {
 
       {/* BANNER 4 */}
       <div className="cs-banner rev">
-        <Image src="/images/timer-images/wod-timer-banner mobile-2.png" alt="WOD Timer mobile view" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
+        <Image src="/images/timer-images/timer-banner-mobile.png" alt="WOD Timer mobile view" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 4 */}
@@ -153,7 +163,7 @@ export default function WodTimer() {
 
       {/* BANNER 5 */}
       <div className="cs-banner rev">
-        <span className="cs-banner-placeholder">Image — Athletes / Community Photography</span>
+        <Image src="/images/timer-images/design-ideation- mobile.png" alt="Design ideation" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 5 */}
@@ -179,6 +189,9 @@ export default function WodTimer() {
           </div>
         </div>
       </section>
+
+      {/* MOBILE CAROUSEL */}
+      <MobileCarousel slides={CAROUSEL_SLIDES} />
 
       {/* NEXT */}
       <div className="cs-next rev">

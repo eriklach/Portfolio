@@ -1,7 +1,16 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import MobileCarousel from '@/components/MobileCarousel';
 
 export const metadata = { title: 'Comp Leaderboard — Erik Lachapelle' };
+
+const CAROUSEL_SLIDES = [
+  { src: '/images/leaderboard-images/lead-main.png',         alt: 'Leaderboard main view' },
+  { src: '/images/leaderboard-images/lead-login.png',        alt: 'Sign in screen' },
+  { src: '/images/leaderboard-images/lead-submit.png',       alt: 'Submit score screen' },
+  { src: '/images/leaderboard-images/lead-menu-rxpanded.png', alt: 'Navigation menu expanded' },
+  { src: '/images/leaderboard-images/lead-profile.png',      alt: 'Athlete profile screen' },
+];
 
 export default function LeaderboardApp() {
   return (
@@ -89,7 +98,7 @@ export default function LeaderboardApp() {
 
       {/* BANNER 3 */}
       <div className="cs-banner rev">
-        <span className="cs-banner-placeholder">Image — Testing Session / Athletes Inputting Scores</span>
+        <Image src="/images/leaderboard-images/leaderboard-studycover.png" alt="Athletes competing with the leaderboard" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 3 */}
@@ -130,7 +139,7 @@ export default function LeaderboardApp() {
 
       {/* BANNER 4 */}
       <div className="cs-banner rev">
-        <span className="cs-banner-placeholder">Image — Live Competition / Leaderboard in Use</span>
+        <Image src="/images/leaderboard-images/leader-banner.png" alt="Live competition leaderboard in use" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 4 */}
@@ -156,6 +165,9 @@ export default function LeaderboardApp() {
           </div>
         </div>
       </section>
+
+      {/* MOBILE CAROUSEL */}
+      <MobileCarousel slides={CAROUSEL_SLIDES} />
 
       {/* NEXT */}
       <div className="cs-next rev">

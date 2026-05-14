@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata = { title: 'Tooltips For Maya — Erik Lachapelle' };
 
@@ -21,7 +22,7 @@ export default function AutodeskTooltips() {
 
       {/* BANNER 1 */}
       <div className="cs-banner rev">
-        <span className="cs-banner-placeholder">Image — Living Room Scene Created Using Maya</span>
+        <Image src="/images/tooltip-images/maya-banner.png" alt="Living room scene created using Maya" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 1 */}
@@ -51,7 +52,7 @@ export default function AutodeskTooltips() {
 
       {/* BANNER 2 */}
       <div className="cs-banner rev">
-        <span className="cs-banner-placeholder">Image — LookdevX / Brick Material Being Created</span>
+        <Image src="/images/tooltip-images/lookdev-tooltip-demo.png" alt="LookdevX tooltip demo" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 2 */}
@@ -90,7 +91,7 @@ export default function AutodeskTooltips() {
 
       {/* BANNER 3 */}
       <div className="cs-banner rev">
-        <span className="cs-banner-placeholder">Image — &ldquo;Clear Graph&rdquo; Tooltip in the LDX Graph Editor</span>
+        <Image src="/images/tooltip-images/lookdev-timelapse.gif" alt="LookdevX graph editor timelapse" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 3 */}
@@ -123,7 +124,7 @@ export default function AutodeskTooltips() {
 
       {/* BANNER 4 */}
       <div className="cs-banner rev">
-        <span className="cs-banner-placeholder">Image — LookdevX in Production / Final Release</span>
+        <Image src="/images/tooltip-images/lookdev-tooltip-demo.png" alt="LookdevX in production" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 4 */}
