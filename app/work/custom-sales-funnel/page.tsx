@@ -1,7 +1,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import MobileCarousel from '@/components/MobileCarousel';
 
 export const metadata = { title: 'Influencer Quiz Funnel — Erik Lachapelle' };
+
+const CAROUSEL_SLIDES = [
+  { src: '/images/quiz-images/quiz-mobile-start.png',    alt: 'Quiz start screen' },
+  { src: '/images/quiz-images/quiz-mobile-question.png', alt: 'Quiz question' },
+  { src: '/images/quiz-images/quiz-mobile-vid.png',      alt: 'Quiz video intro' },
+  { src: '/images/quiz-images/quiz-mobile-results.png',  alt: 'Quiz results' },
+  { src: '/images/quiz-images/quiz-mobile-graph.png',    alt: 'Athlete level graph' },
+  { src: '/images/quiz-images/quiz-mobile-skills.png',   alt: 'Skills breakdown' },
+  { src: '/images/quiz-images/quiz-mobile-accurate.png', alt: 'Accuracy rating' },
+  { src: '/images/quiz-images/quiz-mobile-cta.png',      alt: 'Call to action' },
+];
 
 export default function QuizFunnel() {
   return (
@@ -191,7 +203,7 @@ export default function QuizFunnel() {
         </div>
       </section>
 
-      {/* BANNER 5 */}
+      {/* BANNER 5 — placeholder until image available */}
       <div className="cs-banner rev">
         <span className="cs-banner-placeholder">Image — Launch / Results Overview</span>
       </div>
@@ -226,6 +238,9 @@ export default function QuizFunnel() {
           </div>
         </div>
       </section>
+
+      {/* MOBILE CAROUSEL */}
+      <MobileCarousel slides={CAROUSEL_SLIDES} />
 
       {/* NEXT */}
       <div className="cs-next rev">
