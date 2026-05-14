@@ -96,8 +96,8 @@ nav{
 .cs-intro{
   padding:120px 28px 80px;
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:48px;
+  grid-template-columns:1.2fr 0.9fr 1fr;
+  gap:24px;
   align-items:start;
   border-bottom:1px solid var(--border);
 }
@@ -109,11 +109,11 @@ nav{
   text-transform:uppercase;
   color:var(--text);
   line-height:.92;
-  margin-bottom:24px;
+  margin-bottom:0;
 }
 
 .cs-subtitle{
-  font-size:clamp(22px,3vw,32px);
+  font-size:clamp(20px,2.5vw,28px);
   font-weight:300;
   letter-spacing:.04em;
   color:var(--text-mid);
@@ -134,6 +134,7 @@ nav{
   display:inline-flex;align-items:center;gap:10px;
   border:1px solid var(--border-strong);
   padding:12px 20px;
+  border-radius:2px;
   background:var(--text);
   color:var(--bg);
   font-family:'IBM Plex Mono',monospace;
@@ -141,9 +142,10 @@ nav{
   text-transform:uppercase;
   text-decoration:none;
   cursor:pointer;
-  transition:background .25s,border-color .25s;
+  transition:background .25s,border-color .25s,box-shadow .25s;
+  box-shadow:3px 3px 8px rgba(100,72,18,0.22),-2px -2px 6px rgba(255,248,235,0.65);
 }
-.cs-cta:hover{background:var(--amber);}
+.cs-cta:hover{background:var(--amber);box-shadow:2px 2px 5px rgba(100,72,18,0.18),-1px -1px 4px rgba(255,248,235,0.5);}
 
 /* meta grid 2x2 */
 .cs-meta-grid{
@@ -154,8 +156,10 @@ nav{
 
 .cs-meta-card{
   border:1px solid var(--border-mid);
+  border-radius:2px;
   background:var(--bg-card);
-  padding:22px 20px 24px;
+  padding:14px 16px 16px;
+  box-shadow:3px 3px 7px rgba(100,72,18,0.12),-2px -2px 5px rgba(255,248,235,0.8);
 }
 
 .cs-meta-label{
@@ -349,6 +353,7 @@ nav{
 .cs-next-btn{
   display:inline-flex;align-items:center;gap:14px;
   border:1px solid var(--border-strong);
+  border-radius:2px;
   padding:20px 52px;
   background:var(--text);
   color:var(--bg);
@@ -356,9 +361,10 @@ nav{
   font-size:10px;letter-spacing:.28em;
   text-transform:uppercase;
   text-decoration:none;
-  transition:background .25s;
+  transition:background .25s,box-shadow .25s;
+  box-shadow:3px 3px 8px rgba(100,72,18,0.22),-2px -2px 6px rgba(255,248,235,0.65);
 }
-.cs-next-btn:hover{background:var(--amber);}
+.cs-next-btn:hover{background:var(--amber);box-shadow:2px 2px 5px rgba(100,72,18,0.18),-1px -1px 4px rgba(255,248,235,0.5);}
 
 /* ── FOOTER ── */
 footer{padding:15px 28px;border-top:1px solid var(--border-mid);display:flex;justify-content:space-between;align-items:center;background:var(--bg-2);}
@@ -376,8 +382,9 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
 }
 
 @media(max-width:860px){
-  /* intro — single column */
-  .cs-intro{grid-template-columns:1fr;padding-top:96px;gap:36px;}
+  /* intro — 2 col then meta below */
+  .cs-intro{grid-template-columns:1fr 1fr;padding-top:96px;gap:28px;}
+  .cs-meta-grid{grid-column:1 / -1;}
 
   /* sections — heading spans full width, two cols below */
   .cs-section{grid-template-columns:1fr 1fr;padding:60px 28px;gap:32px 28px;}
@@ -393,8 +400,8 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
   .nav-status{display:none;}
 
   /* intro */
-  .cs-intro{padding:80px 16px 40px;gap:24px;}
-  .cs-meta-grid{grid-template-columns:1fr 1fr;}
+  .cs-intro{grid-template-columns:1fr;padding:80px 16px 40px;gap:24px;}
+  .cs-meta-grid{grid-column:auto;grid-template-columns:1fr 1fr;}
 
   /* sections — fully stacked */
   .cs-section{grid-template-columns:1fr;padding:48px 16px;gap:24px;}
@@ -441,12 +448,15 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
 <section class="cs-intro">
   <div class="rev">
     <h1 class="cs-title">The<br>WOD<br>Timer</h1>
+  </div>
+
+  <div class="rev d2">
     <p class="cs-subtitle">A timer for working out.</p>
     <p class="cs-description">Going from zero-to-shipped on the App Store using SwiftUI &amp; AI-acceleration.</p>
     <a href="#" class="cs-cta">See it on the App Store →</a>
   </div>
 
-  <div class="cs-meta-grid rev d2">
+  <div class="cs-meta-grid rev d3">
     <div class="cs-meta-card">
       <div class="cs-meta-label">Role</div>
       <div class="cs-meta-value">Product designer &amp; developer</div>
