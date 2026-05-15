@@ -281,13 +281,13 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
 ══════════════════════════════════════ */
 
 .cs-intro{
-  padding:120px 0 80px;display:grid;
-  grid-template-columns:1fr 1fr;gap:8px;
+  padding:120px 0 60px;display:grid;
+  grid-template-columns:1fr 2fr;gap:12px;
   align-items:start;border-bottom:1px solid var(--border);
 }
 .cs-intro > *:first-child { padding-left: 28px; }
 .cs-intro > *:last-child  { padding-right: 28px; }
-.cs-title{font-size:clamp(64px,9vw,112px);font-weight:700;letter-spacing:-.02em;text-transform:uppercase;color:var(--text);line-height:.92;margin-bottom:20px;}
+.cs-title{font-size:clamp(36px,4vw,52px);font-weight:700;letter-spacing:-.01em;text-transform:uppercase;color:var(--text);line-height:1.05;margin-bottom:16px;}
 .cs-subtitle{font-size:clamp(20px,2.5vw,28px);font-weight:300;letter-spacing:.04em;color:var(--text-mid);margin-bottom:16px;}
 .cs-description{font-size:15px;font-weight:300;letter-spacing:.06em;line-height:1.8;color:var(--text-dim);max-width:400px;margin-bottom:32px;}
 .cs-cta{
@@ -449,7 +449,7 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
   .card:nth-child(1),.card:nth-child(2),.card:nth-child(3),.card:nth-child(4){grid-column:span 1;}
   .about-section{grid-template-columns:1fr;gap:40px;padding-bottom:60px;}
   .about-photo-col{position:static;max-width:400px;}
-  .cs-intro{grid-template-columns:1fr;padding-top:96px;gap:24px;}
+  .cs-intro{grid-template-columns:1fr;padding-top:96px;padding-bottom:40px;gap:20px;}
   .cs-intro > *:first-child { padding-left: 20px; padding-right: 20px; }
   .cs-intro > *:last-child  { padding-left: 20px; padding-right: 20px; }
   .cs-section{grid-template-columns:1fr 1fr;padding:60px 28px;gap:32px 28px;}
@@ -468,7 +468,7 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
   .about-section{padding:48px 16px 60px;}
   .about-heading{font-size:clamp(44px,14vw,72px);}
   .about-body p{max-width:100%;}
-  .cs-intro{padding:80px 0 40px;gap:16px;}
+  .cs-intro{padding:80px 0 32px;gap:12px;}
   .cs-intro > *:first-child { padding-left: 16px; padding-right: 16px; }
   .cs-intro > *:last-child  { padding-left: 16px; padding-right: 16px; }
   .cs-meta-grid{grid-template-columns:1fr 1fr;}
