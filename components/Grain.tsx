@@ -46,13 +46,20 @@ export default function Grain() {
     const t1 = setTimeout(() => { sweep(); }, 2000);
     const iv = setInterval(sweep, 9000);
 
-    // Scroll reveal
+    // Scroll reveal — add .in to already-visible elements BEFORE enabling the hide,
+    // so content is never invisible if JS is slow to boot.
+    const revEls = Array.from(document.querySelectorAll('.rev'));
+    let initialBatchDone = false;
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
+      if (!initialBatchDone) {
+        initialBatchDone = true;
+        document.body.classList.add('js-ready');
+      }
     }, { threshold: 0.07 });
-    document.querySelectorAll('.rev').forEach(el => io.observe(el));
+    revEls.forEach(el => io.observe(el));
 
     return () => {
       cancelAnimationFrame(animId);
