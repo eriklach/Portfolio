@@ -1,7 +1,11 @@
 'use client';
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Grain() {
+  const pathname = usePathname();
+
+  // Grain canvas + scanline — mount once, never re-run
   useEffect(() => {
     const cv = document.getElementById('grain') as HTMLCanvasElement;
     const cx = cv.getContext('2d')!;
@@ -30,7 +34,6 @@ export default function Grain() {
     window.addEventListener('resize', resize);
     loop();
 
-    // Scanline
     const sl = document.getElementById('scanline') as HTMLElement;
     function sweep() {
       sl.style.transition = 'none';
@@ -43,32 +46,45 @@ export default function Grain() {
         setTimeout(() => { sl.style.opacity = '0'; }, (h / 420) * 1000 - 300);
       });
     }
-    const t1 = setTimeout(() => { sweep(); }, 2000);
+    const t1 = setTimeout(sweep, 2000);
     const iv = setInterval(sweep, 9000);
-
-    // Scroll reveal — add .in to already-visible elements BEFORE enabling the hide,
-    // so content is never invisible if JS is slow to boot.
-    const revEls = Array.from(document.querySelectorAll('.rev'));
-    let initialBatchDone = false;
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-      if (!initialBatchDone) {
-        initialBatchDone = true;
-        document.body.classList.add('js-ready');
-      }
-    }, { threshold: 0.07 });
-    revEls.forEach(el => io.observe(el));
 
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', resize);
       clearTimeout(t1);
       clearInterval(iv);
-      io.disconnect();
     };
   }, []);
+
+  // Scroll reveal — re-runs on every route change so new page elements are observed
+  useEffect(() => {
+    const revEls = Array.from(document.querySelectorAll<Element>('.rev'));
+
+    // Synchronously mark already-visible elements as .in BEFORE enabling the hide,
+    // so in-viewport content is never invisible regardless of JS timing.
+    revEls.forEach(el => {
+      const { top, bottom } = el.getBoundingClientRect();
+      if (top < window.innerHeight && bottom > 0) el.classList.add('in');
+    });
+    document.body.classList.add('js-ready');
+
+    // IntersectionObserver handles below-fold elements as user scrolls
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.07 });
+
+    revEls.forEach(el => { if (!el.classList.contains('in')) io.observe(el); });
+
+    return () => {
+      io.disconnect();
+      // Reset before next route renders so it starts fresh
+      document.body.classList.remove('js-ready');
+      document.querySelectorAll('.rev').forEach(el => el.classList.remove('in'));
+    };
+  }, [pathname]);
 
   return null;
 }
