@@ -50,10 +50,12 @@ export default function AutodeskTooltips() {
         </div>
       </section>
 
-      {/* BANNER 2 */}
-      <div className="cs-banner rev">
-        <Image src="/images/tooltip-images/lookdev-tooltip-demo.png" alt="LookdevX tooltip demo" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
-      </div>
+      {/* BANNER 2  - hidden for now */}
+          {/*
+            <div className="cs-banner rev">
+            <Image src="/images/tooltip-images/lookdev-tooltip-demo.png" alt="LookdevX tooltip demo" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
+            </div>
+          */}
 
       {/* SECTION 2 */}
       <section className="cs-section">

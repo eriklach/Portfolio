@@ -73,7 +73,7 @@ export default function WodTimer() {
 
       {/* BANNER 2 */}
       <div className="cs-banner rev">
-        <Image src="/images/timer-images/timer-banner-two.png" alt="WOD Timer UI" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
+        <Image src="/images/timer-images/timer-mood-board.png" alt="WOD Timer UI" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 2 */}
@@ -115,7 +115,7 @@ export default function WodTimer() {
 
       {/* BANNER 3 */}
       <div className="cs-banner rev">
-        <Image src="/images/timer-images/timer-mood-board.png" alt="Mood board and style guide" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
+        <Image src="/images/timer-images/timer-ideation.png" alt="Mood board and style guide" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 3 */}
@@ -141,7 +141,7 @@ export default function WodTimer() {
 
       {/* BANNER 4 */}
       <div className="cs-banner rev">
-        <Image src="/images/timer-images/timer-banner-mobile.png" alt="WOD Timer mobile view" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
+        <Image src="/images/timer-images/timer-banner-two.png" alt="WOD Timer mobile landscape view" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 4 */}

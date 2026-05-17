@@ -21,7 +21,7 @@ export default function Home() {
         <div className="hero-bio">
           <p className="hero-bio-text">
             Formerly a UX writer — now a product designer and<br />
-            vibe-coder. I use design, code, and content to solve<br />
+            vibe-coder. I use design, code, and content to solve
             problems end-to-end.
           </p>
         </div>

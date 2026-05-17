@@ -35,7 +35,7 @@ export default function QuizFunnel() {
 
       {/* BANNER 1 */}
       <div className="cs-banner rev">
-        <Image src="/images/quiz-images/Intro-Video-Thumbnail.jpg" alt="Quiz Funnel" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
+        <Image src="/images/quiz-images/quiz-screenshot-banner.jpg" alt="Quiz Funnel" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 1 */}
@@ -86,7 +86,7 @@ export default function QuizFunnel() {
 
       {/* BANNER 2 */}
       <div className="cs-banner rev">
-        <Image src="/images/quiz-images/jd-charlie-split.png" alt="JD the client" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
+        <Image src="/images/quiz-images/jd-brand-mark.png" alt="JD logo" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 2 */}
@@ -119,7 +119,7 @@ export default function QuizFunnel() {
 
       {/* BANNER 3 */}
       <div className="cs-banner rev">
-        <span className="cs-banner-placeholder">Image — Quiz UI / Build Process</span>
+          <Image src="/images/quiz-images/jd-charlie-split.png" alt="JD logo" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 3 */}
@@ -167,7 +167,7 @@ export default function QuizFunnel() {
 
       {/* BANNER 4 */}
       <div className="cs-banner rev">
-        <span className="cs-banner-placeholder">Image — Analytics / Data Dashboard</span>
+          <Image src="/images/quiz-images/Intro-Video-Thumbnail.png" alt="JD logo" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
 
       {/* SECTION 4 */}
@@ -203,10 +203,8 @@ export default function QuizFunnel() {
         </div>
       </section>
 
-      {/* BANNER 5 — placeholder until image available */}
-      <div className="cs-banner rev">
-        <span className="cs-banner-placeholder">Image — Launch / Results Overview</span>
-      </div>
+          {/* MOBILE CAROUSEL */}
+          <MobileCarousel slides={CAROUSEL_SLIDES} />
 
       {/* SECTION 5 */}
       <section className="cs-section">
@@ -239,8 +237,7 @@ export default function QuizFunnel() {
         </div>
       </section>
 
-      {/* MOBILE CAROUSEL */}
-      <MobileCarousel slides={CAROUSEL_SLIDES} />
+     
 
       {/* NEXT */}
       <div className="cs-next rev">
