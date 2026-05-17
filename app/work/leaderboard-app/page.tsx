@@ -96,7 +96,7 @@ export default function LeaderboardApp() {
         </div>
       </section>
 
-      {/* BANNER 3 */}
+      {/* BANNER 3 - place the video here */}
       <div className="cs-banner rev">
         <Image src="/images/leaderboard-images/leaderboard-studycover.png" alt="Athletes competing with the leaderboard" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
       </div>
@@ -137,10 +137,9 @@ export default function LeaderboardApp() {
         </div>
       </section>
 
-      {/* BANNER 4 */}
-      <div className="cs-banner rev">
-        <Image src="/images/leaderboard-images/leader-banner.png" alt="Live competition leaderboard in use" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
-      </div>
+          
+    {/* MOBILE CAROUSEL */}
+    <MobileCarousel slides={CAROUSEL_SLIDES} />
 
       {/* SECTION 4 */}
       <section className="cs-section">
@@ -166,8 +165,7 @@ export default function LeaderboardApp() {
         </div>
       </section>
 
-      {/* MOBILE CAROUSEL */}
-      <MobileCarousel slides={CAROUSEL_SLIDES} />
+      
 
       {/* NEXT */}
       <div className="cs-next rev">
