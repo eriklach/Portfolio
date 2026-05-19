@@ -72,8 +72,8 @@ export default function WodTimer() {
       </section>
 
       {/* BANNER 2 */}
-      <div className="cs-banner rev">
-        <Image src="/images/timer-images/timer-mood-board.png" alt="WOD Timer UI" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
+      <div className="cs-banner rev" style={{ background: '#13110d' }}>
+        <Image src="/images/timer-images/timer-mood-board.png" alt="WOD Timer UI" fill style={{ objectFit: 'contain' }} />
       </div>
 
       {/* SECTION 2 */}
@@ -162,8 +162,8 @@ export default function WodTimer() {
       </section>
 
       {/* BANNER 5 */}
-      <div className="cs-banner rev">
-        <Image src="/images/timer-images/design-ideation- mobile.png" alt="Design ideation" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
+      <div className="cs-banner rev" style={{ background: '#eae4da' }}>
+        <Image src="/images/timer-images/design-ideation- mobile.png" alt="Design ideation" fill style={{ objectFit: 'contain' }} />
       </div>
 
       {/* SECTION 5 */}

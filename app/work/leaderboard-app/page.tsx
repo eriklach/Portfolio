@@ -61,10 +61,10 @@ export default function LeaderboardApp() {
 
       {/* APP SCREENSHOTS */}
       <div className="cs-app-screens rev">
-        <Image src="/images/leaderboard-images/lead-main.png" alt="Leaderboard main view" width={300} height={480} style={{ flex: 1, height: 480, objectFit: 'cover', objectPosition: 'center top' }} />
-        <Image src="/images/leaderboard-images/lead-login.png" alt="Sign in" width={300} height={480} style={{ flex: 1, height: 480, objectFit: 'cover', objectPosition: 'center top' }} />
-        <Image src="/images/leaderboard-images/lead-submit.png" alt="Submit score" width={300} height={480} style={{ flex: 1, height: 480, objectFit: 'cover', objectPosition: 'center top' }} />
-        <Image src="/images/leaderboard-images/lead-menu-rxpanded.png" alt="Navigation menu" width={300} height={480} style={{ flex: 1, height: 480, objectFit: 'cover', objectPosition: 'center top' }} />
+        <Image src="/images/leaderboard-images/lead-main.png" alt="Leaderboard main view" width={300} height={600} style={{ flex: 1, height: 600, objectFit: 'contain' }} />
+        <Image src="/images/leaderboard-images/lead-login.png" alt="Sign in" width={300} height={600} style={{ flex: 1, height: 600, objectFit: 'contain' }} />
+        <Image src="/images/leaderboard-images/lead-submit.png" alt="Submit score" width={300} height={600} style={{ flex: 1, height: 600, objectFit: 'contain' }} />
+        <Image src="/images/leaderboard-images/lead-menu-rxpanded.png" alt="Navigation menu" width={300} height={600} style={{ flex: 1, height: 600, objectFit: 'contain' }} />
       </div>
 
       {/* SECTION 2 */}
@@ -96,9 +96,13 @@ export default function LeaderboardApp() {
         </div>
       </section>
 
-      {/* BANNER 3 - place the video here */}
-      <div className="cs-banner rev">
-        <Image src="/images/leaderboard-images/leaderboard-studycover.png" alt="Athletes competing with the leaderboard" fill style={{ objectFit: 'cover', opacity: 0.85, mixBlendMode: 'multiply' }} />
+      {/* BANNER 3 — testing video */}
+      <div className="cs-banner rev" style={{ background: '#0d0b09' }}>
+        <video
+          src="/images/leaderboard-images/leaderboard-testing.mp4"
+          autoPlay muted loop playsInline
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+        />
       </div>
 
       {/* SECTION 3 */}

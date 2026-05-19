@@ -172,11 +172,13 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
 .card:nth-child(3){grid-column:span 1;}
 .card:nth-child(4){grid-column:span 2;}
 .card{
-  position:relative;overflow:hidden;border:1px solid var(--border-mid);
-  background:var(--bg-card);cursor:pointer;transition:border-color .35s;
+  position:relative;overflow:hidden;border:none;border-radius:14px;
+  background:var(--bg);cursor:pointer;
   display:flex;flex-direction:column;text-decoration:none;color:inherit;
+  box-shadow:6px 6px 14px rgba(100,72,18,0.18),-4px -4px 10px rgba(255,248,235,0.95);
+  transition:box-shadow .3s;
 }
-.card:hover{border-color:var(--border-strong);}
+.card:hover{box-shadow:3px 3px 8px rgba(100,72,18,0.12),-2px -2px 6px rgba(255,248,235,0.8),inset 2px 2px 5px rgba(100,72,18,0.07),inset -2px -2px 4px rgba(255,248,235,0.65);}
 .card-thumb{
   flex:1;min-height:200px;position:relative;overflow:hidden;
   display:flex;align-items:center;justify-content:center;background:var(--bg-3);
@@ -226,7 +228,7 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
   transition:background .25s,transform .25s;
 }
 .card:hover .card-arrow{background:var(--amber);transform:translate(2px,-2px);}
-.card-caption{padding:12px 14px 14px;border-top:1px solid var(--border-mid);background:var(--bg-2);}
+.card-caption{padding:12px 14px 14px;border-top:1px solid var(--border);background:var(--bg);}
 .card-title{font-size:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text);margin-bottom:3px;}
 .card-desc{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text-dim);letter-spacing:.1em;line-height:1.7;text-transform:uppercase;}
 
@@ -377,7 +379,7 @@ footer span{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--text
 .cs-gap-problem{font-size:14px;font-weight:500;letter-spacing:.04em;color:var(--text);margin-bottom:6px;}
 .cs-gap-fix{font-size:14px;font-weight:300;letter-spacing:.05em;line-height:1.65;color:var(--text-mid);}
 .cs-gap-fix strong{color:var(--text);font-weight:500;}
-.cs-app-screens{display:flex;gap:3px;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.cs-app-screens{display:flex;gap:0;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#0d0b09;}
 .cs-app-screens img{flex:1;min-width:0;height:480px;object-fit:cover;object-position:center top;}
 .cs-gap-img{width:100%;margin-top:14px;border:1px solid var(--border-mid);overflow:hidden;display:block;}
 .cs-gap-img img{width:100%;display:block;}
