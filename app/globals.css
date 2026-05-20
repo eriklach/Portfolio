@@ -60,12 +60,9 @@ nav{
   backdrop-filter:blur(8px);
   text-decoration:none;
 }
-.badge-icon{
-  position:relative;width:20px;height:20px;
-  border:1px solid var(--border-mid);flex-shrink:0;
+.badge-icon-img{
+  width:22px;height:22px;flex-shrink:0;object-fit:contain;mix-blend-mode:multiply;
 }
-.badge-icon::before{content:'';position:absolute;width:1px;height:11px;background:var(--amber);left:50%;top:50%;transform:translate(-50%,-50%);}
-.badge-icon::after{content:'';position:absolute;width:11px;height:1px;background:var(--amber);left:50%;top:50%;transform:translate(-50%,-50%);}
 .badge-text{
   font-family:'IBM Plex Mono',monospace;
   font-size:9.5px;letter-spacing:.2em;
