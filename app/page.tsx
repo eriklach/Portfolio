@@ -83,7 +83,7 @@ export default function Home() {
 
           <Link href="/work/autodesk-tooltips" className="card rev d3">
             <div className="card-thumb">
-              <div className="card-cross" />
+              <Image src="/images/tooltip-images/maya-banner.png" alt="Autodesk Tooltips" fill style={{ objectFit: 'cover', opacity: 0.82, mixBlendMode: 'multiply' }} />
               <div className="reticle">
                 <div className="rc tl" /><div className="rc tr" /><div className="rc bl" /><div className="rc br" />
                 <div className="reticle-dot" />
