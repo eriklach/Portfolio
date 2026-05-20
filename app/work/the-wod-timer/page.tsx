@@ -22,7 +22,7 @@ export default function WodTimer() {
           <h1 className="cs-title">The<br />WOD<br />Timer</h1>
           <p className="cs-subtitle">A timer for working out.</p>
           <p className="cs-description">Going from zero-to-shipped on the App Store using SwiftUI &amp; AI-acceleration.</p>
-          <a href="#" className="cs-cta">See it on the App Store →</a>
+          <a href="https://apps.apple.com/us/app/the-wod-timer/id6752862559" className="cs-cta" target="_blank" rel="noopener noreferrer">See it on the App Store →</a>
         </div>
         <div className="cs-meta-grid rev d2">
           <div className="cs-meta-card"><div className="cs-meta-label">Role</div><div className="cs-meta-value">Product designer &amp; developer</div></div>
@@ -73,7 +73,7 @@ export default function WodTimer() {
 
       {/* BANNER 2 */}
       <div className="cs-banner rev" style={{ background: '#13110d' }}>
-        <Image src="/images/timer-images/timer-mood-board.png" alt="WOD Timer UI" fill style={{ objectFit: 'contain' }} />
+        <Image src="/images/timer-images/timer-mood-board.png" alt="WOD Timer UI" fill style={{ objectFit: 'contain', opacity: 1, mixBlendMode: 'normal' }} />
       </div>
 
       {/* SECTION 2 */}
@@ -161,10 +161,8 @@ export default function WodTimer() {
         </div>
       </section>
 
-      {/* BANNER 5 */}
-      <div className="cs-banner rev" style={{ background: '#eae4da' }}>
-        <Image src="/images/timer-images/design-ideation- mobile.png" alt="Design ideation" fill style={{ objectFit: 'contain' }} />
-      </div>
+      {/* MOBILE CAROUSEL */}
+      <MobileCarousel slides={CAROUSEL_SLIDES} />
 
       {/* SECTION 5 */}
       <section className="cs-section">
@@ -189,9 +187,6 @@ export default function WodTimer() {
           </div>
         </div>
       </section>
-
-      {/* MOBILE CAROUSEL */}
-      <MobileCarousel slides={CAROUSEL_SLIDES} />
 
       {/* NEXT */}
       <div className="cs-next rev">

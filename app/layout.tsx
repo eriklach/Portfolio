@@ -7,6 +7,10 @@ import Footer from '@/components/Footer';
 export const metadata: Metadata = {
   title: 'Erik Lachapelle — Product Designer & AI Magician',
   description: 'Portfolio of Erik Lachapelle, Product Designer & AI Magician based in Toronto.',
+  icons: {
+    icon: '/images/coffee-mug.png',
+    apple: '/images/coffee-mug.png',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

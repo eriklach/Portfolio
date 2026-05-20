@@ -23,7 +23,7 @@ export default function QuizFunnel() {
         <div className="rev">
           <h1 className="cs-title">Influencer<br />Quiz<br />Funnel</h1>
           <p className="cs-subtitle">Turning Instagram traffic into qualified leads.</p>
-          <a href="#" className="cs-cta">Take The Quiz →</a>
+          <a href="https://aaacrossfitlevelquiz.com/" className="cs-cta" target="_blank" rel="noopener noreferrer">Take The Quiz →</a>
         </div>
         <div className="cs-meta-grid rev d2">
           <div className="cs-meta-card"><div className="cs-meta-label">Role</div><div className="cs-meta-value">Product designer &amp; developer</div></div>

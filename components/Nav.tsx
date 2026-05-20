@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
 export default function Nav() {
@@ -25,7 +26,7 @@ export default function Nav() {
   return (
     <nav>
       <Link href="/" className="nav-badge">
-        <div className="badge-icon" />
+        <Image src="/images/coffee-mug.png" alt="logo" width={22} height={22} className="badge-icon-img" />
         <span className="badge-text" ref={textRef} />
       </Link>
       <div className="nav-status">
