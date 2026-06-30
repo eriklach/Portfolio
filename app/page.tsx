@@ -11,17 +11,9 @@ export default function Home() {
       <section className="hero">
         <div className="drift-bar" />
         <OrbWrapper />
-        <div className="orb-readout">
-          <span className="hi">ORB-7 ACTIVE</span>
-          <span>GEOMETRY: ICOSAHEDRON</span>
-          <span>NODES: 200</span>
-          <span>ROT: 0.27 rad/s</span>
-        </div>
-
         <div className="hero-bio">
           <p className="hero-bio-text">
-            Formerly a UX writer — now a product designer and<br />
-            vibe-coder. I use design, code, and content to solve
+            I use design, code, and content to solve
             problems end-to-end.
           </p>
         </div>
@@ -43,7 +35,7 @@ export default function Home() {
         <div className="work-heading-col rev">
           <div className="work-sub-label">Selected Work</div>
           <div className="work-count">04</div>
-          <div className="work-year">2022 — 2024</div>
+          <div className="work-year">2022 — 2026</div>
         </div>
 
         <div className="cards-grid">
